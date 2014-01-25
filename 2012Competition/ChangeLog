@@ -1,0 +1,177 @@
+commit 21d25943f7a9f47f78f76ef93be5e14bc3686f1e
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Apr 8 11:54:07 2012 -0400
+
+    working comp code as of cinci day 3
+
+commit c7a7d92928e01b3b18ce473146fa3ac4e3a2ff9c
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Fri Apr 6 16:07:14 2012 -0400
+
+    working code as of cincy day 2 4:07
+
+commit 331450857482bcaef2ede0387cb5540b0279cc14
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Tue Mar 27 16:02:56 2012 -0500
+
+    added comments to code
+
+commit 2012599f7af8547eb51155eb7b22e5d7cd0d76bb
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sat Mar 24 16:51:39 2012 -0500
+
+    Working Autonomous/Teleop. End of Day 3, Milwaukee
+
+commit 9324af566010f46236d2647bc39e7b41754f7271
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sat Mar 24 08:19:20 2012 -0500
+
+    Astyle formatting
+
+commit f12fb23980956d000b048cd0054a8080f25bf20a
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sat Mar 24 08:08:34 2012 -0500
+
+    Milwaukee Regional, Start of day 3
+
+commit 98d7932f4402e92f9d5082ef96526b7dd5429236
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Wed Mar 21 21:02:13 2012 -0500
+
+    working code with three autonimi
+
+commit 6aec7ef6ab3becef82ac92efbbdf962f620c9327
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sat Mar 17 14:21:49 2012 -0500
+
+    current working code
+
+commit a078e2eeedbb84905c43ed63c7e268fdbd222622
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Mar 11 09:18:39 2012 -0500
+
+    working code.
+
+commit 3abfea6d90362d9b5f77f1e9180f8fdeb5c8644a
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Tue Mar 6 21:05:19 2012 -0600
+
+    messed with the feeder. Works okay.
+
+commit 2824538cb76d9ca02d3c9c3cd3796f11d8bae5e7
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Mar 4 08:39:07 2012 -0600
+
+    Working Robot. Testing Flywheel encoder values.
+
+commit 60c29f2be4b77aa2b998e3d795311544319f009f
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Wed Feb 22 19:13:51 2012 -0600
+
+    Added some needed files and updated the shootercode.
+
+commit 2c44f6a31fc253abaea6dfa7b398e9e043cccc65
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Wed Feb 22 16:13:23 2012 -0600
+
+    Working Code, Before I left
+
+commit 793c108debfc4f9ddc202f5eee85a0deef59bcc2
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Wed Feb 22 15:22:12 2012 -0600
+
+    changed main file to work, but need to fix feeder.
+
+commit e6ce980c545ede28f77b05c86ec1a7f010924be2
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Tue Feb 21 19:12:26 2012 -0600
+
+    Working Code
+
+commit 8539a8f0b7154be55aff13df3e567f98818f10ee
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Tue Feb 21 15:33:09 2012 -0600
+
+    Started new project that works!!
+
+commit a7b741b2521c78a0c0275eb727df4b7b33c17106
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Tue Feb 21 15:26:19 2012 -0600
+
+    VERY BAD, DO NOT USE!!!! NEW PROJECT STARTED!!!!!
+
+commit 074ec87914f6dd014afa516b3bbb36540af54574
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 19 08:38:52 2012 -0600
+
+    Balla
+
+commit 5560713f70954390f9a24152fba9342f292a83e0
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Fri Feb 17 18:08:24 2012 -0600
+
+    Working code before the shooter.
+
+commit 1760b7257559199e5350c63033bd4dcdea47e948
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 12 18:18:00 2012 -0600
+
+    Put all the code together
+
+commit 0034bfa52ff87871a28d79b870d555d8fb6c183c
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Tue Feb 7 15:45:07 2012 -0600
+
+    Minor Tweaks to ramping code
+
+commit d72783adf5f63d1f7b757e5c14f904839975805f
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 20:51:33 2012 -0600
+
+    Added TODO comments in the drivetrain files
+
+commit 1359fc9338133f59fac2a8663fc6371e665437d8
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 20:44:28 2012 -0600
+
+    Fixed the gitignore file
+
+commit e93fb77382f4eaeb51e21556cb682663c579daf3
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 16:54:02 2012 -0600
+
+    Added a latch class
+
+commit 584cdb97c1ae821f843d4d3394e1c0513a79e217
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 11:48:56 2012 -0600
+
+    Updated the Schematic file
+
+commit ccdf0ce7e21272444bd9b83f6dd4e351f9dfff1a
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 09:11:06 2012 -0600
+
+    Fixed everything!
+
+commit 28fcb0cb7e990bf03c89ed61e3bfeb7c4ef268c6
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 08:39:20 2012 -0600
+
+    WE ruined everything
+
+commit 9fd064ec97c7625e331d393b63afd383c300ddb2
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 08:34:01 2012 -0600
+
+    Added .gitignores.
+    
+    The current plan is to only add source files to the git repository and ignore
+    all config files from WindRiver. If this makes putting the code on new computers
+    difficult, this may change
+
+commit 7a63385c4f72b9cb705cf8048545d4cca0a124c7
+Author: Tim Jansen <t-bone007@sbcglobal.net>
+Date:   Sun Feb 5 08:28:10 2012 -0600
+
+    Initial commit, adding code

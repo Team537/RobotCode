@@ -1,0 +1,30 @@
+FRC Simple Robot Template
+--------------------------------
+
+This program is the simplest sample program that implements
+the full field control and shows the use of the watchdog
+timer. This is an excellent starting point for your programs.
+
+This program simply drives forward for 2 seconds in the
+Autonomous period and does simple arcade driving during the
+Operator Control period.
+
+#define BTN_SHOOT_MODE 2
+#define BTN_RELOAD_MODE 3
+#define BTN_SHOOT 4
+
+#define FIRE_FRISBEE 1,1
+#define FRONT_ROTATIONAL 1,1
+#define BACK_ROTATIONAL 1,1
+#define FRONT_LEFT_MOTOR 1,1
+#define FRONT_RIGHT_MOTOR 1,1
+#define BACK_LEFT_MOTOR 1,1
+#define BACK_RIGHT_MOTOR 1,1
+#define SHOOT_MOTOR 1,1
+#define FRONT_POT 1,1
+#define BACK_POT 1,1
+#define COMPRESSOR 1,1
+
+
+enum eShooterMode {eShoot, eReload}
+

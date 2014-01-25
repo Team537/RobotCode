@@ -1,0 +1,6 @@
+*.swp
+.cproject
+.project
+.wrmakefile
+.wrproject
+PPC603gnu/
