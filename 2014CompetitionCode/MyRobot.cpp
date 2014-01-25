@@ -12,12 +12,15 @@ private:
 	float prevl, prevr;
 	float lenc, renc;
 	float spdmax;
+	float timeprint;
 	
 	Joystick PrimaryController;
 	Victor MotorL, MotorR;
 	DigitalOutput Shift;
 	CompressorManager comp;
 	Encoder LEnc, REnc;
+	DriverStationLCD* lcd;
+	Timer PrintTime;
 	
 public:
 	RobotDemo(void):
@@ -26,10 +29,12 @@ public:
 		MotorR(VICTR),
 		Shift(SHIFT),
 		LEnc(LEFT_ENCODER),
-		REnc(RIGHT_ENCODER)
+		REnc(RIGHT_ENCODER),
+		lcd(DriverStationLCD::GetInstance())
 	{
 		deadband = 0.1;
 		rampspd = 0.1;
+		timeprint = 0.1;
 		spdmax = 1;
 	}
 	
@@ -62,6 +67,20 @@ public:
 			rspd *= (lenc / renc);
 		}
 	}
+	void Print ()
+		{
+			if (PrintTime.Get() > timeprint)
+			{
+				lcd->Clear();
+				lcd->Printf(DriverStationLCD::kUser_Line1, 1, "Left Joy = %5.4f", PrimaryController.GetRawAxis(LEFT_JOY));
+				lcd->Printf(DriverStationLCD::kUser_Line2, 1, "Right Joy = %5.4f", PrimaryController.GetRawAxis(RIGHT_JOY));
+				lcd->Printf(DriverStationLCD::kUser_Line3, 1, "Left Speed = %5.4f", lspd);
+				lcd->Printf(DriverStationLCD::kUser_Line4, 1, "Right Speed = %5.4f", rspd);
+				lcd->UpdateLCD();
+				PrintTime.Reset();
+				PrintTime.Start();
+			}
+		}
 	void RampSpeed (float LNewSpeed, float RNewSpeed)
 	{
 		LNewSpeed = ApplyDeadband(LNewSpeed);
@@ -122,7 +141,7 @@ public:
 	
 	void OperatorControl(void)
 	{
-		
+		PrintTime.Start();
 		while (IsOperatorControl())
 		{
 			comp.checkCompressor();
