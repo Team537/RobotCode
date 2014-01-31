@@ -8,3 +8,8 @@ void CompressorManager::checkCompressor()
 	else
 		comp.Start();
 }
+
+int CompressorManager::getPressureSwitch()
+{
+	return comp.GetPressureSwitchValue();	
+}
