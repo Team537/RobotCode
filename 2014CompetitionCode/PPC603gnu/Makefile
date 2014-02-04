@@ -31,8 +31,12 @@ else
 MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
-WS_ROOT_DIR := C:/team537code/Team537Workspace
-PRJ_ROOT_DIR := $(WS_ROOT_DIR)/2014CompetitionCode
+
+
+PRJ_ROOT_DIR := C:/WindRiver/workspace/2014CompetitionCode
+WS_ROOT_DIR := C:/WindRiver/workspace
+PRJ_ROOT_DIR := C:/Team537Code/RobotCode/2014CompetitionCode
+WS_ROOT_DIR := C:/Team537Code/RobotCode
 
 
 
@@ -162,7 +166,7 @@ SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBPATH =
 SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBS = 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : OBJ_DIR := SimpleTemplate_partialImage/$(MODE_DIR)
 
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.o : $(PRJ_ROOT_DIR)/CompressorManager.cpp $(FORCE_FILE_BUILD)
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.o : C:/Team537Code/RobotCode/2014CompetitionCode/CompressorManager.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
@@ -170,7 +174,12 @@ SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.o : 
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.o : C:/Team537Code/RobotCode/2014CompetitionCode/MyRobot.cpp
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
 OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrain.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.o
 
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage.o : $(OBJECTS_SimpleTemplate_partialImage)
@@ -183,9 +192,7 @@ _clean :: SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_cl
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_clean : 
 	$(TRACE_FLAG)if [ -d "SimpleTemplate_partialImage" ]; then cd "SimpleTemplate_partialImage"; rm -rf $(MODE_DIR); fi
 
-force : 
-
-DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.d
+DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrain.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.d
 -include $(DEP_FILES)
 
 

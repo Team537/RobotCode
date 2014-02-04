@@ -12,6 +12,7 @@ public:
 		{
 		}
 	void checkCompressor();
+	int getPressureSwitch();
 	
 private:
 	
