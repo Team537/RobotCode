@@ -11,6 +11,7 @@ private:
 	float rampspd;
 	float shooterspeed;
 	bool shooterstate;
+	float timeprint;
 	
 	Joystick controller;
 	Victor leftdrive, rightdrive, shooter, angle, feeder, collector;
@@ -18,6 +19,8 @@ private:
 	DigitalOutput highshift, lowshift;
 	Relay rod;
 	AnalogChannel anglepot, lowball, midball, highball;
+	DriverStationLCD* lcd;
+	Timer PrintTime;
 
 public:
 	RobotDemo(void): // Same order as declaration
@@ -35,13 +38,15 @@ public:
 		anglepot(ANGLE_POT),
 		lowball(LOW_BALL),
 		midball(MID_BALL),
-		highball(HIGH_BALL)
+		highball(HIGH_BALL),
+		lcd(DriverStationLCD::GetInstance())
 		
 	{
 		deadband = 0.1;
 		rampspd = 0.1;
-		shooterspeed = 0.5;
+		shooterspeed = 0.35;
 		shooterstate = true;
+		timeprint = 0.1;
 	}
 	
 	float ApplyDeadband(float stick) // Applies a deadband, setting small joystick values to zero
@@ -73,6 +78,18 @@ public:
 			collector.SetSpeed(0);
 		}
 	}
+	void Print ()
+			{
+				if (PrintTime.Get() > timeprint)
+				{
+					lcd->Clear();
+					lcd->Printf(DriverStationLCD::kUser_Line1, 1, "Shooter State = %b", shooterstate);
+					lcd->Printf(DriverStationLCD::kUser_Line2, 1, "Pressure Switch Value = %i", comp.Switch());
+					lcd->UpdateLCD();
+					PrintTime.Reset();
+					PrintTime.Start();
+				}
+			}
 	
 	void RampSpeed(float LNewSpeed, float RNewSpeed) // Ramps the speed values up and down
 	{
@@ -107,7 +124,7 @@ public:
 		leftdrive.Set(lspd);
 		rightdrive.Set(rspd);
 	}
-	/*
+	
 	void Shifting(void) // Controls the drive train shifting
 	{
 		if (controller.GetRawButton(BTN_HIGH_SHIFT) == true)
@@ -121,7 +138,7 @@ public:
 			lowshift.Set(1);
 		}
 	}
-	*/
+	
 	void ShooterAngle(void) // Controls the shroud for shooter angle
 	{
 		if (controller.GetRawButton(BTN_ANGLE_UP))
@@ -146,7 +163,7 @@ public:
 				{
 					shooterstate = false;
 				}
-			/*
+				/*
 				if (controller.GetRawButton(BTN_SHOOT_SPEED_UP))
 				{
 					shooter.SetSpeed(shooterspeed + 0.05);
@@ -155,13 +172,14 @@ public:
 				{
 					shooter.SetSpeed(shooterspeed - 0.05);
 				}
+			
 				else
 				{
 			*/
 					shooter.SetSpeed(shooterspeed);
 			//	}
 			}
-			if (shooterstate == false)
+			else if (shooterstate == false)
 			{
 				if (controller.GetRawButton(BTN_SHOOT_TOGGLE))
 				{
@@ -173,13 +191,13 @@ public:
 	
 	void OperatorControl(void)
 	{
-		
+		PrintTime.Start();
 		while (IsOperatorControl())
 		{
-			/*
+			
 			comp.checkCompressor();
-			Shifting();
-			*/
+			//Shifting();
+			
 			RampSpeed(controller.GetRawAxis(LEFT_DRIVE_AXIS), controller.GetRawAxis(RIGHT_DRIVE_AXIS));
 			Clamping();
 			SetMotors();
@@ -187,6 +205,7 @@ public:
 			Rod();
 			ShooterAngle();
 			ShooterSpeed();
+			Print();
 		}
 	}
 	

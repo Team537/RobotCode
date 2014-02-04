@@ -14,6 +14,7 @@ public:
 		{
 		}	
 	void checkCompressor();
+	bool Switch();
 	
 private:
 	

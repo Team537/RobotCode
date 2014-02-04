@@ -8,3 +8,10 @@ void CompressorManager::checkCompressor()
 	else
 		comp.Start();
 }
+bool CompressorManager::Switch()
+{
+	if (comp.GetPressureSwitchValue() == 1)
+		return true;
+	else
+		return false;
+}
