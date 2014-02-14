@@ -38,7 +38,7 @@ public:
 	{
 		DriveTrain.StartDriveTrain();
 		Collector.StartCollector();
-		//Shooter.StartShooterAuto();
+		Shooter.StartShooterAuto();
 		AutonomousState = 1;
 		while(IsAutonomous())
 		{
@@ -111,15 +111,14 @@ public:
 		PrintTime.Start();
 		DriveTrain.StartDriveTrain();
 		Collector.StartCollector();
-		//Shooter.StartShooterTeleop();
+		Shooter.StartShooterTeleop();
 		while (IsOperatorControl())
 		{
 			Shooter.Safe = Collector.SafeToShoot();
 			comp.checkCompressor();
 			DriveTrain.RunDriveTrain(PrimaryController.GetRawAxis(LEFT_JOYSTICK), PrimaryController.GetRawAxis(RIGHT_JOYSTICK), (int)PrimaryController.GetRawButton(BUTTON_HIGH_DRIVE_SHIFT), (int)PrimaryController.GetRawButton(BUTTON_LOW_DRIVE_SHIFT));
 			Collector.RunCollector(PrimaryController.GetRawButton(BUTTON_COLLECTOR_DEPLOY), PrimaryController.GetRawButton(BUTTON_COLLECTOR_RETRACT), PrimaryController.GetRawButton(BUTTON_COLLECT_OUT), PrimaryController.GetRawButton(BUTTON_COLLECT_IN), PrimaryController.GetRawButton(BUTTON_COLLECT_STOP));
-			//Shooter.RunShooter(SecondaryController.GetRawButton(BUTTON_PRIME_SHOOTER), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT));
-			Shooter.PracticeShooter(SecondaryController.GetRawAxis(RIGHT_JOYSTICK), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT));
+			Shooter.RunShooter(SecondaryController.GetRawButton(BUTTON_PRIME_SHOOTER), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT));
 			Print();
 		}
 	}

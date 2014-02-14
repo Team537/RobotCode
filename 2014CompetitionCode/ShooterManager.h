@@ -23,10 +23,9 @@ public:
 		}
 
 	bool Safe;
-	/*void StartShooterAuto();
+	void StartShooterAuto();
 	void StartShooterTeleop();
-	*/void RunShooter(int PrimeButton, int GoalButton, int TrussButton);
-	void PracticeShooter (float ShooterAxis, int GoalButton);
+	void RunShooter(int PrimeButton, int GoalButton, int TrussButton);
 	
 private:
 	int ShooterState;

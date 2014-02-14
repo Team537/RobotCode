@@ -3,18 +3,7 @@
 #include "NameSchematic.h"
 #include <cmath>
 
-void ShooterManager::PracticeShooter(float ShooterAxis, int GoalButton)
-{
-	if (fabs(ShooterAxis) < 0.1)
-		ShooterAxis = 0;
-	ShooterMotor.Set(ShooterAxis);
-	if ((GoalButton == 1) && (Safe == true))
-	{
-		ShooterMotorShifter.Set(0);
-		ShooterMotor.Set(-.5);
-	}
-}
-/*void ShooterManager::StartShooterAuto ()
+void ShooterManager::StartShooterAuto ()
 {
 	ShooterState = 3;
 }
@@ -97,6 +86,5 @@ void ShooterManager::RunTrussShot (int TrussBtn)
 			ShooterState = 1;
 			ShooterMotorShifter.Set(1);
 		}
-}*/
-
+}
 
