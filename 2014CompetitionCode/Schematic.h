@@ -1,24 +1,51 @@
-#ifndef schematic_h
-#define schematic_h
+#ifndef SCHEMATIC_H
+#define SCHEMATIC_H
 
-#define ON 1
-#define OFF 0
-#define HIGH 1
-#define LOW 0
-#define CONTROLLER 1
-#define VICTL 1,1
-#define VICTR 1,2
-#define SHIFT 1,1
-#define BUTTON_HIGH 8
-#define BUTTON_LOW 7
-#define COMPRESSOR 1,2, 1,1
+// Primary Controller
+#define PRIMARY_CONTROLLER 1
+#define LEFT_JOYSTICK 2
+#define RIGHT_JOYSTICK 4
+#define BUTTON_COLLECT_IN 2
+#define BUTTON_COLLECT_STOP 3
+#define BUTTON_COLLECT_OUT 4
+#define BUTTON_COLLECTOR_RETRACT 5
+#define BUTTON_COLLECTOR_DEPLOY 6
+#define BUTTON_LOW_DRIVE_SHIFT 7
+#define BUTTON_HIGH_DRIVE_SHIFT 8
 
-#define LEFT_JOY 2
-#define RIGHT_JOY 4
-#define LEFT_ENCODER 1,7,1,8
-#define RIGHT_ENCODER 1,3,1,4
+// Secondary Controller
+#define SECONDARY_CONTROLLER 2
+#define BUTTON_PRIME_SHOOTER 5
+#define BUTTON_GOAL_SHOT 6
+#define BUTTON_TRUSS_SHOT 8
 
-#define RIGHT_DIRECTION -1
-#define LEFT_DIRECTION 1
+// Robot Victors
+#define LEFT_DRIVE_MOTOR 1,1
+#define RIGHT_DRIVE_MOTOR 1,2
+#define COLLECTOR_MOTOR 1,3
+#define SHOOTER_MOTOR 1,4
+
+// Robot Compressor
+#define COMPRESSOR_SWITCH 1,2
+#define COMPRESSOR_RELAY 1,1
+
+// Robot Digital Inputs
+#define AUTONOMOUS_SWITCH 1,1
+#define RIGHT_DRIVE_ENCODER 1,3,1,4
+#define LEFT_DRIVE_ENCODER 1,5,1,6
+#define SHOOTER_ENCODER 1,7,1,8
+#define SHOOTER_LIMIT_SWITCH 1,9
+
+// Robot Digital Outputs
+#define DRIVE_SHIFT 1,1
+#define COLLECTOR_RETRACT 1,2
+#define COLLECTOR_DEPLOY 1,3
+#define SHOOTER_MOTOR_SHIFTER 1,4
+
+#define FLAPPERS 1,6
+
+// Robot Drive Directions
+#define LEFT_DRIVE_DIRECTION 1
+#define RIGHT_DRIVE_DIRECTION -1
 
 #endif
