@@ -1,6 +1,4 @@
 #include "DriveTrainManager.h"
-#include "Schematic.h"
-#include "NameSchematic.h"
 #include <cmath>
 
 void DriveTrainManager::StartDriveTrain() 
@@ -10,14 +8,9 @@ void DriveTrainManager::StartDriveTrain()
 	LeftDriveEncoder.Start();
 	RightDriveEncoder.Start();
 	EncoderTimer.Start();
-	DriveShift.Set(HIGH_GEAR);
+	DriveShift.Set(LOW_GEAR);
 	LeftEncTotal = 0;
 	RightEncTotal = 0;
-}
-void DriveTrainManager::ResetPIDs()
-{
-	LeftDrivePID.Reset();
-	RightDrivePID.Reset();
 }
 void DriveTrainManager::RunDriveTrain(float JoystickLeft, float JoystickRight, int ButtonHighShift, int ButtonLowShift)
 {
@@ -117,13 +110,3 @@ float DriveTrainManager::Sign (float InputSign)
 		}
 		return 0;
 	}
-void DriveTrainManager::SetDistance(int leftdistance, int rightdistance)
-{
-	LeftDrivePID.SetSetpoint(leftdistance);
-	RightDrivePID.SetSetpoint(rightdistance);
-}
-bool DriveTrainManager::AtDistance()
-{
-	return LeftDrivePID.OnTarget() && RightDrivePID.OnTarget();
-}
-

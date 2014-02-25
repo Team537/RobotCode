@@ -5,15 +5,22 @@
 
 void CollectorManager::StartCollector ()
 {
-	CollectorRetract.Set(OFF);
-	CollectorDeploy.Set(ON);
+	CollectorRetract.Set(ON);
+	CollectorDeploy.Set(OFF);
 	CollectorMotorDirection = COLLECTOR_MOTOR_STOP;
 }
-void CollectorManager::RunCollector (int ButtonDeploy, int ButtonRetract, int ButtonCollectOut, int ButtonCollectIn, int ButtonCollectStop)
+void CollectorManager::StartCollectorTeleop ()
+{
+	CollectorMotorDirection = COLLECTOR_MOTOR_STOP;
+}
+void CollectorManager::RunCollector (int ButtonDeploy, int ButtonRetract, int ButtonCollectOut, int ButtonCollectIn, int ButtonCollectStop, bool IsShooterLocked)
 {
 	RunCollectorDeploy (ButtonDeploy);
-	RunCollectorRetract (ButtonRetract);
-	RunCollectorMotor (ButtonCollectOut, ButtonCollectIn, ButtonCollectStop);
+	if (IsShooterLocked)
+	{
+		RunCollectorRetract (ButtonRetract);
+		RunCollectorMotor (ButtonCollectOut, ButtonCollectIn, ButtonCollectStop);
+	}
 }
 void CollectorManager::RunCollectorRetract (int BtnRetract)
 {
@@ -50,7 +57,7 @@ void CollectorManager::RunCollectorMotor (int BtnOut, int BtnIn, int BtnStop)
 		CollectorMotor.Set(-BtnOut);
 	}
 }
-bool CollectorManager::SafeToShoot ()
+bool CollectorManager::SafeToShoot()
 {
 	if ((CollectorDeploy.Get() == ON) && (CollectorRetract.Get() == OFF))
 	{
@@ -63,5 +70,5 @@ bool CollectorManager::SafeToShoot ()
 }
 int CollectorManager::CollectorSpeed()
 {
-	return CollectorMotor.Get();
+	return (int)CollectorMotor.Get();
 }

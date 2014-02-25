@@ -17,10 +17,11 @@ public:
 		{
 		
 		}
-	void RunCollector (int ButtonDeploy, int ButtonRetract, int ButtonCollectOut, int ButtonCollectIn, int ButtonCollectStop);
+	void RunCollector (int ButtonDeploy, int ButtonRetract, int ButtonCollectOut, int ButtonCollectIn, int ButtonCollectStop, bool IsShooterLocked);
 	void StartCollector ();
+	void StartCollectorTeleop ();
 	int CollectorSpeed ();
-	bool SafeToShoot ();
+	bool SafeToShoot();
 	
 private:
 	int CollectorMotorDirection;

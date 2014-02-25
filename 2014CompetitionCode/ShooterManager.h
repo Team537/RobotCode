@@ -6,33 +6,42 @@
 
 class ShooterManager
 {
-	Solenoid ShooterMotorShifter, Flappers;
+	Solenoid ShooterMotorShifter, Latch, ShooterCharge;
 	Victor ShooterMotor;
 	DigitalInput ShooterLimitSwitch;
 	Encoder ShooterEncoder;
 	Timer ShooterTimer;
+	PIDController ShooterPID;
 public:
 	ShooterManager(void):
 		ShooterMotorShifter (SHOOTER_MOTOR_SHIFTER),
-		Flappers (FLAPPERS),
+		Latch (LATCH),
+		ShooterCharge (SHOOTER_CHARGE),
 		ShooterMotor (SHOOTER_MOTOR),
 		ShooterLimitSwitch (SHOOTER_LIMIT_SWITCH),
-		ShooterEncoder(SHOOTER_ENCODER,true,CounterBase::k4X)
+		ShooterEncoder(SHOOTER_ENCODER,true,CounterBase::k4X),
+		ShooterPID(-0.03, 0, -0.03, &ShooterEncoder, &ShooterMotor)
 		{
-			ShooterState = 1;
+			ShooterState = 0;
+			ShooterEncoder.SetPIDSourceParameter(PIDSource::kDistance);
+			ShooterEncoder.Start();
+			ShooterEncoder.SetMinRate(0.5);
+			
+			LatchedEncoderValue = ShooterEncoder.Get();
+			
+			ShooterPID.SetAbsoluteTolerance(10);
+			ShooterPID.SetOutputRange(-1, .2);
 		}
 
-	bool Safe;
+	bool IsShooterLocked();
 	void StartShooterAuto();
 	void StartShooterTeleop();
-	void RunShooter(int PrimeButton, int GoalButton, int TrussButton);
+	void StateMachine(bool SafeToShoot, int TrussButton, int GoalButton);
+	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff);
 	
 private:
 	int ShooterState;
-	void RunPrime (int PrimeBtn);
-	void RunGoalShot (int GoalBtn);
-	void RunTrussShot (int TrussBtn);
-	
+	int LatchedEncoderValue;
 };
 
 #endif

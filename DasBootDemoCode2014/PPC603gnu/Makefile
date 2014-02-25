@@ -31,7 +31,7 @@ else
 MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
-PRJ_ROOT_DIR := C:/Team537Code/RobotCode/2014CompetitionCode
+PRJ_ROOT_DIR := C:/Team537Code/RobotCode/DasBootDemoCode2014
 WS_ROOT_DIR := C:/Team537Code/RobotCode
 
 
@@ -158,51 +158,21 @@ SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBPATH =
 SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBS = 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : OBJ_DIR := SimpleTemplate_partialImage/$(MODE_DIR)
 
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousLow.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousLow.cpp
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/CompressorManager.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousMiddle.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousMiddle.cpp
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/DriveTrain.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/MyRobot.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousStraight.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousStraight.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CollectorManager.o : C:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.o : C:/Team537Code/RobotCode/2014CompetitionCode/CompressorManager.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrainManager.o : C:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.o : C:/Team537Code/RobotCode/2014CompetitionCode/MyRobot.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/ShooterManager.o : C:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousLow.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousMiddle.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousStraight.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CollectorManager.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrainManager.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/ShooterManager.o
+OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.o
 
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage.o : $(OBJECTS_SimpleTemplate_partialImage)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc -r -nostdlib -Wl,-X  -o "$@" $(OBJECTS_SimpleTemplate_partialImage) $(LIBPATH) $(LIBS) $(ADDED_LIBPATH) $(ADDED_LIBS)  && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
@@ -214,9 +184,7 @@ _clean :: SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_cl
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_clean : 
 	$(TRACE_FLAG)if [ -d "SimpleTemplate_partialImage" ]; then cd "SimpleTemplate_partialImage"; rm -rf $(MODE_DIR); fi
 
-DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousLow.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousMiddle.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.d \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousStraight.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CollectorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.d \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrainManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/ShooterManager.d
+DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.d
 -include $(DEP_FILES)
 
 
