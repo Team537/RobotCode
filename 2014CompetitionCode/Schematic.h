@@ -15,7 +15,6 @@
 #define BUTTON_HIGH_DRIVE_SHIFT 8
 
 // Secondary Controller
-
 #define BUTTON_PRIME_SHOOTER 5
 #define BUTTON_GOAL_SHOT 6
 #define BUTTON_TRUSS_SHOT 8

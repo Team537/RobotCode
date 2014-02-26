@@ -24,10 +24,10 @@
 #define ANGLE 1,1
 #define FEEDER 1,5
 #define COLLECTOR 1,9
-#define COMPRESSOR 1,7,1,1
+#define COMPRESSOR 1,7,1,1 //now 2
 #define HIGH_SHIFT 1,2
 #define LOW_SHIFT 1,1
-#define ROD 1,6
+#define ROD 1,6 //now 1
 #define ANGLE_POT 1,2
 #define LOW_BALL 1,8
 #define MID_BALL 1,1

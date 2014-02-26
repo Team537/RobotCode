@@ -455,7 +455,7 @@ public:
 			lcd->Printf(DriverStationLCD::kUser_Line4, 1, "Right = %5.4f", right.Get());
 			lcd->Printf(DriverStationLCD::kUser_Line5, 1, "Left = %5.4f", left.Get());
 			lcd->Printf(DriverStationLCD::kUser_Line6, 1, "Hardstop = %5.4f", hardstop.Get());
-			lcd->UpdateLCD(); // Updates screen with new dqata
+			lcd->UpdateLCD(); // Updates screen with new data
 			timer.Reset(); // Resets printing timer
 			timer.Start();
 		}

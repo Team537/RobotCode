@@ -31,6 +31,10 @@ else
 MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
+
+
+PRJ_ROOT_DIR := C:/WindRiver/workspace/2014CompetitionCode
+WS_ROOT_DIR := C:/WindRiver/workspace
 PRJ_ROOT_DIR := C:/Team537Code/RobotCode/2014CompetitionCode
 WS_ROOT_DIR := C:/Team537Code/RobotCode
 
@@ -55,6 +59,8 @@ LIBS =
 IDE_INCLUDES = -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/WPILib -I$(WIND_BASE)/target/h/wrn/coreip 
 
 IDE_LIBRARIES = $(WIND_BASE)/target/lib/WPILib.a 
+
+IDE_DEFINES = 
 
 
 
@@ -101,6 +107,7 @@ SimpleTemplate/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -O2 -fstrength-reduce -fno
 endif
 SimpleTemplate/$(MODE_DIR)/% : IDE_INCLUDES = -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/WPILib -I$(WIND_BASE)/target/h/wrn/coreip 
 SimpleTemplate/$(MODE_DIR)/% : IDE_LIBRARIES = $(WIND_BASE)/target/lib/WPILib.a 
+SimpleTemplate/$(MODE_DIR)/% : IDE_DEFINES = 
 SimpleTemplate/$(MODE_DIR)/% : PROJECT_TYPE = DKM
 SimpleTemplate/$(MODE_DIR)/% : DEFINES = 
 SimpleTemplate/$(MODE_DIR)/% : EXPAND_DBG = 0
@@ -145,6 +152,7 @@ SimpleTemplate_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -O2 -fstrengt
 endif
 SimpleTemplate_partialImage/$(MODE_DIR)/% : IDE_INCLUDES = -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/WPILib -I$(WIND_BASE)/target/h/wrn/coreip 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : IDE_LIBRARIES = $(WIND_BASE)/target/lib/WPILib.a 
+SimpleTemplate_partialImage/$(MODE_DIR)/% : IDE_DEFINES = 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : PROJECT_TYPE = DKM
 SimpleTemplate_partialImage/$(MODE_DIR)/% : DEFINES = 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : EXPAND_DBG = 0
