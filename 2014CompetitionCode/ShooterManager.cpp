@@ -39,6 +39,11 @@ void ShooterManager::StartShooterTeleop ()
 	}
 }
 
+int ShooterManager::ReturnState()
+{
+	return ShooterState;
+}
+
 void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton)
 {	
 	SmartDashboard::PutData("Shooter PID", &ShooterPID);

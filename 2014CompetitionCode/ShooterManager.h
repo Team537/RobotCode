@@ -38,6 +38,7 @@ public:
 	void StartShooterTeleop();
 	void StateMachine(bool SafeToShoot, int TrussButton, int GoalButton);
 	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff);
+	int ReturnState();
 	
 private:
 	int ShooterState;

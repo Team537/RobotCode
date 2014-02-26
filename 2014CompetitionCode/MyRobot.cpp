@@ -8,6 +8,8 @@
 #include "AutonomousLow.h"
 #include "AutonomousSide.h"
 #include "AutonomousMiddle.h"
+#include "AutonomousStraight.h"
+#include "AutonomousChooser.h"
 #include <cmath>
 class RobotDemo : public SimpleRobot
 {
@@ -28,18 +30,14 @@ private:
 	ShooterManager Shooter;
 	DriverStationLCD* lcd;
 	Timer PrintTime, AutoTimer, AutoTimeDrive;
-	DigitalInput AutonomousSwitch;
-	AutonomousLow AutoLow;
-	AutonomousSide AutoSide;
-	AutonomousMiddle AutoMiddle;
+	SendableChooser AutoChooser;
 	
 public:
 	
 	RobotDemo(void):
 		PrimaryController(PRIMARY_CONTROLLER),
 		SecondaryController(SECONDARY_CONTROLLER),
-		lcd(DriverStationLCD::GetInstance()),
-		AutonomousSwitch(AUTONOMOUS_SWITCH)
+		lcd(DriverStationLCD::GetInstance())
 	{
 		
 	}
@@ -55,19 +53,23 @@ public:
 				}
 			}
 	void RobotInit()
-	{
+	{ 	
+		AutonomousLow AutoLow;
+		AutonomousSide AutoSide;
+		AutonomousMiddle AutoMiddle;
+		AutonomousStraight AutoStraight;
+	
+		AutoChooser.AddDefault("Side lineup, High goal", &AutoSide);
+		AutoChooser.AddObject("Side lineup, Low goal", &AutoLow);
+		AutoChooser.AddObject("Middle Lineup, High goal", &AutoMiddle);
+		AutoChooser.AddObject("Drive straight, No goal", &AutoStraight);
+		SmartDashboard::PutData("Chooser", &AutoChooser);
 	}
 	
 	void Autonomous()
 	{
-		switch(AutoMode)
-		{
-			case -1:
-				AutoLow.Initialize(&DriveTrain, &Collector, &Shooter);
-				AutoSide.Initialize(&DriveTrain, &Collector, &Shooter);
-				AutoMiddle.Initialize(&DriveTrain, &Collector, &Shooter);
-				break;
-		}
+		AutoChoice* autonmousChoice = (AutoChoice*)AutoChooser.GetSelected();
+		autonmousChoice->Initialize(&DriveTrain, &Collector, &Shooter);
 		
 		while (IsAutonomous())
 		{
@@ -77,22 +79,12 @@ public:
 			 * -1 = Low Goal, Side Lineup
 			 * 0 = One Ball, High Goal, Side Lineup
 			 * 1 = One Ball, High Goal, Middle Lineup
+			 * 2 = Drive Straight
 			 * */
-			switch(AutoMode)
-			{
-				case -1:
-					AutoLow.Run(&DriveTrain, &Collector, &Shooter);
-					break;	
-				case 0:
-					AutoSide.Run(&DriveTrain, &Collector, &Shooter);
-					break;	
-				case 1:
-					AutoMiddle.Run(&DriveTrain, &Collector, &Shooter);
-					break;			
-			}
+			autonmousChoice->Run(&DriveTrain, &Collector, &Shooter);
 		}
-					
 	}
+	
 	void OperatorControl(void)
 	{
 		PrintTime.Start();

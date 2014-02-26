@@ -2,6 +2,7 @@
 #include "Schematic.h"
 #include "NameSchematic.h"
 #include "AutonomousSide.h"
+#include "DriveTrainManager.h"
 
 void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
 {
@@ -13,13 +14,13 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 	switch(AutoState)
 	{
 			case 1: //move forward
-				DriveTrain->RunDriveTrain(.5, -.5, 0, 0);
-				if ((DriveTrain->LeftEncTotal >= 800) || (DriveTrain->RightEncTotal >= 800))
+				DriveTrain->SetDistance(60, 60);
+				if (DriveTrain->AtDistance())
 				{
-					DriveTrain->RunDriveTrain (0, 0, 0, 0);
 					AutoState = 2;
-					break;
 				}
+				break;
+				
 			case 2: //Deploy Collector
 				AutoTimer.Start();
 				if (AutoTimer.Get() > .5)
@@ -28,26 +29,34 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 					AutoTimer.Stop();
 					AutoTimer.Reset();
 					AutoState = 3;
-					break;
-				}
-			case 3: //Wait for hot (only with side)
-				if (HotGoal == true)
-				{
-					AutoState = 4;
-					break;
-				}
-			case 4: //Shoot, also brings back to shooter state 3		
-				Shooter->StateMachine(Collector->SafeToShoot(), 0, 1);
-				BallShot = 1;
-				AutoTimer.Start();
-				if (AutoTimer.Get() > 2) 
-				{
-					AutoTimer.Stop();
-					AutoTimer.Reset();
-					AutoState = 5;
 				}
 				break;
-			case 5: //Auto Done
+				
+			case 3: //Wait for hot (only with side)
+				if (HotGoal)
+				{
+					AutoState = 4;
+				}
+				break;
+				
+			case 4: //Checks if shooter is locked
+				if (Shooter->IsShooterLocked())
+				{
+					AutoState = 5;
+				}
+				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0);
+				break;
+			
+			case 5: //Shoot, also brings back to shooter state 3
+				if (!Shooter->IsShooterLocked())
+				{
+					AutoState = 6;
+				}
+				Shooter->StateMachine(Collector->SafeToShoot(), 0, 1);
+				break;
+
+			case 6: //Auto Done
+				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0);
 				break;
 	}
 }

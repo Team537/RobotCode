@@ -117,6 +117,7 @@ float DriveTrainManager::Sign (float InputSign)
 		}
 		return 0;
 	}
+
 void DriveTrainManager::SetDistance(int leftdistance, int rightdistance)
 {
 	LeftDrivePID.SetSetpoint(leftdistance);

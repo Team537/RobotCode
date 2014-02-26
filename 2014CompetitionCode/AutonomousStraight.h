@@ -7,8 +7,9 @@
 #include "DriveTrainManager.h"
 #include "CollectorManager.h"
 #include "ShooterManager.h"
+#include "AutonomousChooser.h"
 
-class AutonomousStraight 
+class AutonomousStraight : public AutoChoice
 {
 	Timer AutoTimer;
 public:		

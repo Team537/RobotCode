@@ -14,15 +14,14 @@ void AutonomousLow::Run(DriveTrainManager *DriveTrain, CollectorManager *Collect
 	switch(AutoState)
 	{
 		case 1: //Move forward to low
-			DriveTrain->RunDriveTrain(-.5, .5, 0, 0);
-			if ((DriveTrain->LeftEncTotal > 1500) || (DriveTrain->RightEncTotal > 1500))
+			DriveTrain->SetDistance(153, 153);
+			if (DriveTrain->AtDistance())
 			{
 				AutoState = 2;
-				break;
 			}
+			break;
 			
-		case 2: //Run collector out	
-			DriveTrain->RunDriveTrain (-.25, .25, 0, 0);
+		case 2: //Run collector out
 			Collector->RunCollector(0,0,1,0,0,1);
 			AutoTimer.Start();
 			if (AutoTimer.Get() > .75) 
@@ -31,34 +30,27 @@ void AutonomousLow::Run(DriveTrainManager *DriveTrain, CollectorManager *Collect
 				AutoTimer.Reset();
 				Collector->RunCollector(0,0,0,0,1,1);
 				AutoState = 3;
-				break;
 			}
+			break;
+			
 		case 3: //Push ball into low
-			DriveTrain->RunDriveTrain (-.5, .5, 0, 0);
-			if ((DriveTrain->LeftEncTotal >= 100) || (DriveTrain->RightEncTotal >= 100))	
+			DriveTrain->SetDistance(29, 29);
+			if (DriveTrain->AtDistance())
 			{
-				AutoState = 11;
-				break;
+				AutoState = 4;
 			}
+			break;
 			
 		case 4: //Back up
-			DriveTrain->RunDriveTrain(.5, -.5, 0, 0);
-			if ((DriveTrain->LeftEncTotal >= -400) || (DriveTrain->RightEncTotal >= -400))
+			DriveTrain->SetDistance(-20, -20);
+			if (DriveTrain->AtDistance())
 			{
 				DriveTrain->RunDriveTrain (0, 0, 0, 0);
 				AutoState = 5;
-				break;
 			}
-		case 5: //Deploy Collector
-			AutoTimer.Start();
-			if (AutoTimer.Get() > .5)
-			{
-				Collector->RunCollector(1, 0, 0, 0, 0, 0);
-				AutoTimer.Stop();
-				AutoTimer.Reset();
-				AutoState = 6;
-			}
-		case 6: //Auto Done
+			break;
+	
+		case 5: //Auto Done
 			break;		
 	}
 }
