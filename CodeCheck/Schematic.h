@@ -15,13 +15,13 @@
 #define BUTTON_HIGH_DRIVE_SHIFT 8
 
 // Secondary Controller
+
 #define BUTTON_PRIME_SHOOTER 5
 #define BUTTON_GOAL_SHOT 6
 #define BUTTON_TRUSS_SHOT 8
 #define RIGHT_JOYSTICK 4
 #define BUTTON_LATCH_ON 1
 #define BUTTON_LATCH_OFF 2
-#define BUTTON_CHARGE_SHOOTER 3
 
 // Robot Victors
 #define LEFT_DRIVE_MOTOR 1,1

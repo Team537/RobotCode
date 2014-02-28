@@ -14,11 +14,6 @@ void DriveTrainManager::StartDriveTrain()
 	LeftEncTotal = 0;
 	RightEncTotal = 0;
 }
-void DriveTrainManager::ResetPIDs()
-{
-	LeftDrivePID.Reset();
-	RightDrivePID.Reset();
-}
 void DriveTrainManager::RunDriveTrain(float JoystickLeft, float JoystickRight, int ButtonHighShift, int ButtonLowShift)
 {
 	RunShifting(ButtonHighShift, ButtonLowShift);
@@ -117,26 +112,3 @@ float DriveTrainManager::Sign (float InputSign)
 		}
 		return 0;
 	}
-
-void DriveTrainManager::SetDistance(int leftdistance, int rightdistance)
-{
-	LeftDrivePID.SetSetpoint(leftdistance);
-	RightDrivePID.SetSetpoint(rightdistance);
-}
-bool DriveTrainManager::AtDistance()
-{
-	return LeftDrivePID.OnTarget() && RightDrivePID.OnTarget();
-}
-
-void DriveTrainManager::DashboardInitialize() 
-{
-	SmartDashboard::PutData("Right drive PID", &RightDrivePID);
-	SmartDashboard::PutData("Left drive PID", &LeftDrivePID);
-}
-
-void DriveTrainManager::DashboardLoop() 
-{
-	SmartDashboard::PutNumber("Left Cake", LeftDrivePID.GetError());
-	SmartDashboard::PutNumber("Right Cake", RightDrivePID.GetError());	
-}
-

@@ -38,17 +38,6 @@ void ShooterManager::StartShooterTeleop ()
 		ShooterState = 3;
 	}
 }
-void ShooterManager::ChargeShooter (int ButtonCharge)
-{
-	if (ButtonCharge == true)
-	{
-		ShooterCharge.Set(true);
-	}
-}
-int ShooterManager::ReturnState()
-{
-	return ShooterState;
-}
 
 void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton)
 {	
