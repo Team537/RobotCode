@@ -9,7 +9,7 @@
 #include "AutonomousSide.h"
 #include "AutonomousMiddle.h"
 #include "AutonomousStraight.h"
-#include "AutonomousChooser.h"
+#include "AutoChoice.h"
 #include <cmath>
 class RobotDemo : public SimpleRobot
 {
@@ -75,12 +75,12 @@ public:
 		autonmousChoice->Initialize(&DriveTrain, &Collector, &Shooter);
 
 		//AutoStraight.Initialize(&DriveTrain, &Collector, &Shooter);
-		
+				
 		while (IsAutonomous())
 		{			
 			comp.checkCompressor();
-			//autonmousChoice->Run(&DriveTrain, &Collector, &Shooter);
-			AutoStraight.Run(&DriveTrain, &Collector, &Shooter);	
+			autonmousChoice->Run(&DriveTrain, &Collector, &Shooter);
+			//AutoStraight.Run(&DriveTrain, &Collector, &Shooter);	
 			DriveTrain.DashboardLoop();		
 			Shooter.DashboardLoop();
 		}

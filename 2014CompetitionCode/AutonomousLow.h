@@ -7,7 +7,7 @@
 #include "DriveTrainManager.h"
 #include "CollectorManager.h"
 #include "ShooterManager.h"
-#include "AutonomousChooser.h"
+#include "AutoChoice.h"
 
 class AutonomousLow : public AutoChoice
 {

@@ -18,7 +18,7 @@ public:
 		DriveShift(DRIVE_SHIFT),
 		LeftDriveEncoder(LEFT_DRIVE_ENCODER,true,CounterBase::k4X),
 		RightDriveEncoder(RIGHT_DRIVE_ENCODER,true,CounterBase::k4X),
-		LeftDrivePID (-0.1, 0, 0, &LeftDriveEncoder, &LeftDriveMotor),
+		LeftDrivePID (0.1, 0, 0, &LeftDriveEncoder, &LeftDriveMotor),
 		RightDrivePID (-0.1, 0, 0, &RightDriveEncoder, &RightDriveMotor)
 		{
 			LeftDriveEncoder.SetPIDSourceParameter(PIDSource::kDistance);

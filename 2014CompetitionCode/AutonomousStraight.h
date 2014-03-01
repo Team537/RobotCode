@@ -7,7 +7,7 @@
 #include "DriveTrainManager.h"
 #include "CollectorManager.h"
 #include "ShooterManager.h"
-#include "AutonomousChooser.h"
+#include "AutoChoice.h"
 
 class AutonomousStraight : public AutoChoice
 {
@@ -15,6 +15,7 @@ class AutonomousStraight : public AutoChoice
 public:		
 	void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
 	void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
+	int Test();
 private:
 	int State;
 };

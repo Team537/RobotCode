@@ -51,7 +51,7 @@
 // Robot Drive Directions
 #define LEFT_DRIVE_DIRECTION 1
 #define RIGHT_DRIVE_DIRECTION -1
-#define LEFT_PID_ADJUST -1
+#define LEFT_PID_ADJUST 1
 #define RIGHT_PID_ADJUST 1
 
 #endif

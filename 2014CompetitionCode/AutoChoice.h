@@ -11,7 +11,8 @@
 class AutoChoice
 {
 public: 
-	void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
-	void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
+	virtual void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
+	virtual void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
+	virtual ~AutoChoice() = 0;
 };
 #endif
