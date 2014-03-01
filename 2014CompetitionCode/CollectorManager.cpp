@@ -59,14 +59,7 @@ void CollectorManager::RunCollectorMotor (int BtnOut, int BtnIn, int BtnStop)
 }
 bool CollectorManager::SafeToShoot()
 {
-	if ((CollectorDeploy.Get() == ON) && (CollectorRetract.Get() == OFF))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return ((CollectorDeploy.Get() == ON) && (CollectorRetract.Get() == OFF));
 }
 int CollectorManager::CollectorSpeed()
 {

@@ -8,7 +8,7 @@ void AutonomousStraight::Initialize(DriveTrainManager *DriveTrain, CollectorMana
 {
 	SmartDashboard::PutString("Auto Selected", "Auto Straight");
 	DriveTrain->ResetPIDs();
-	DriveTrain->ShiftHigh();
+	DriveTrain->ShiftLow();
 	State = 1;
 }
 

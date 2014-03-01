@@ -22,6 +22,9 @@
 #define BUTTON_LATCH_ON 1
 #define BUTTON_LATCH_OFF 2
 #define BUTTON_CHARGE_SHOOTER 3
+#define BUTTON_BACK 9
+#define BUTTON_START 10
+#define BUTTON_PID_DISABLE 3
 
 // Robot Victors
 #define LEFT_DRIVE_MOTOR 1,1

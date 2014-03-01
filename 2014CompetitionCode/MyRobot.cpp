@@ -22,6 +22,7 @@ private:
 	int LowGoal;
 	int HighSide;
 	int HighMiddle;
+	int ShooterMode;
 	
 	Joystick PrimaryController, SecondaryController;
 	CompressorManager comp;
@@ -43,7 +44,7 @@ public:
 		SecondaryController(SECONDARY_CONTROLLER),
 		lcd(DriverStationLCD::GetInstance())
 	{
-		
+		ShooterMode = 0;
 	}
 	void Print ()
 	{
@@ -56,7 +57,18 @@ public:
 			PrintTime.Start();
 		}
 	}
-	
+	void UpdateShooterMode()
+	{
+		if (SecondaryController.GetRawButton(BUTTON_BACK) == PRESSED)
+		{
+			ShooterMode = SHOOTER_MANUAL;
+		}
+		if (SecondaryController.GetRawButton(BUTTON_START) == PRESSED)
+		{
+			ShooterMode = SHOOTER_AUTO;
+		}
+		SmartDashboard::PutNumber("Shooter Mode", ShooterMode);
+	}
 	void RobotInit()
 	{
 		AutoChooser.AddDefault("Side lineup, High goal", &AutoSide);
@@ -64,13 +76,13 @@ public:
 		AutoChooser.AddObject("Middle Lineup, High goal", &AutoMiddle);
 		AutoChooser.AddObject("Drive straight, No goal", &AutoStraight);
 		SmartDashboard::PutData("Chooser", &AutoChooser);
-
-		DriveTrain.DashboardInitialize();
-		Shooter.DashboardInitialize();
 	}
 	
 	void Autonomous()
 	{
+		DriveTrain.DashboardInitialize();
+		Shooter.DashboardInitialize();
+		
 		AutoChoice* autonmousChoice = (AutoChoice*)AutoChooser.GetSelected();
 		autonmousChoice->Initialize(&DriveTrain, &Collector, &Shooter);
 
@@ -88,6 +100,9 @@ public:
 	
 	void OperatorControl(void)
 	{
+		DriveTrain.DashboardInitialize();
+		Shooter.DashboardInitialize();
+		
 		PrintTime.Start();
 		Collector.StartCollectorTeleop();
 		DriveTrain.StartDriveTrain();
@@ -95,11 +110,18 @@ public:
 		
 		while (IsOperatorControl())
 		{
+			UpdateShooterMode();
 			comp.checkCompressor();
 			DriveTrain.RunDriveTrain(PrimaryController.GetRawAxis(LEFT_JOYSTICK), PrimaryController.GetRawAxis(RIGHT_JOYSTICK), (int)PrimaryController.GetRawButton(BUTTON_HIGH_DRIVE_SHIFT), (int)PrimaryController.GetRawButton(BUTTON_LOW_DRIVE_SHIFT));
 			Collector.RunCollector(PrimaryController.GetRawButton(BUTTON_COLLECTOR_DEPLOY), PrimaryController.GetRawButton(BUTTON_COLLECTOR_RETRACT), PrimaryController.GetRawButton(BUTTON_COLLECT_OUT), PrimaryController.GetRawButton(BUTTON_COLLECT_IN), PrimaryController.GetRawButton(BUTTON_COLLECT_STOP), Shooter.IsShooterLocked());
-			Shooter.ManualShooter(SecondaryController.GetRawAxis(RIGHT_JOYSTICK), SecondaryController.GetRawButton(BUTTON_LATCH_ON), SecondaryController.GetRawButton(BUTTON_LATCH_OFF), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT));
-			//Shooter.StateMachine(Collector.SafeToShoot(), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT));
+			if (ShooterMode == SHOOTER_AUTO)
+			{
+				Shooter.StateMachine(Collector.SafeToShoot(), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT));
+			}
+			else if (ShooterMode == SHOOTER_MANUAL)
+			{
+				Shooter.ManualShooter(SecondaryController.GetRawAxis(LEFT_JOYSTICK), SecondaryController.GetRawButton(BUTTON_LATCH_ON), SecondaryController.GetRawButton(BUTTON_LATCH_OFF), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_PID_DISABLE));
+			}
 			Shooter.ChargeShooter(SecondaryController.GetRawButton(BUTTON_CHARGE_SHOOTER));
 			DriveTrain.DashboardLoop();
 			Shooter.DashboardLoop();

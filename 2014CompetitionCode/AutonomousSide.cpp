@@ -15,7 +15,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 	switch(AutoState)
 	{
 			case 1: //move forward
-				DriveTrain->SetDistance(60, 60);
+				DriveTrain->SetDistance(120, 120);
 				if (DriveTrain->AtDistance())
 				{
 					AutoState = 2;
@@ -23,6 +23,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 				
 			case 2: //Deploy Collector
+				DriveTrain->DisablePIDControl();
 				AutoTimer.Start();
 				if (AutoTimer.Get() > .5)
 				{
@@ -34,7 +35,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 				
 			case 3: //Wait for hot (only with side)
-				if (HotGoal)
+				if (HotGoal || true)
 				{
 					AutoState = 4;
 				}

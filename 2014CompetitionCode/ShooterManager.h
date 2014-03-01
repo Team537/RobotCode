@@ -30,14 +30,14 @@ public:
 			LatchedEncoderValue = ShooterEncoder.Get();
 			
 			ShooterPID.SetAbsoluteTolerance(10);
-			ShooterPID.SetOutputRange(-1, .2);
+			ShooterPID.SetOutputRange(-1, .25);
 		}
 
 	bool IsShooterLocked();
 	void StartShooterAuto();
 	void StartShooterTeleop();
 	void StateMachine(bool SafeToShoot, int TrussButton, int GoalButton);
-	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear);
+	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear, int PIDOff);
 	void DashboardInitialize();
 	void DashboardLoop();
 	void ChargeShooter (int ButtonCharge);
