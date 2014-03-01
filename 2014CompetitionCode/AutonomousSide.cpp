@@ -6,6 +6,7 @@
 
 void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
 {
+	SmartDashboard::PutString("Auto Selected", "Auto Side");
 	AutoState = 1;
 }
 

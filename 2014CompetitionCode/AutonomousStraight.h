@@ -16,7 +16,7 @@ public:
 	void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
 	void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
 private:
-
+	int State;
 };
 
 #endif

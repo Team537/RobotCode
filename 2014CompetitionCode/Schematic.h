@@ -18,7 +18,7 @@
 #define BUTTON_PRIME_SHOOTER 5
 #define BUTTON_GOAL_SHOT 6
 #define BUTTON_TRUSS_SHOT 8
-#define RIGHT_JOYSTICK 4
+#define LEFT_JOYSTICK 2
 #define BUTTON_LATCH_ON 1
 #define BUTTON_LATCH_OFF 2
 #define BUTTON_CHARGE_SHOOTER 3
@@ -51,5 +51,7 @@
 // Robot Drive Directions
 #define LEFT_DRIVE_DIRECTION 1
 #define RIGHT_DRIVE_DIRECTION -1
+#define LEFT_PID_ADJUST -1
+#define RIGHT_PID_ADJUST 1
 
 #endif

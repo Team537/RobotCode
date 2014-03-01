@@ -6,14 +6,25 @@
 
 void AutonomousStraight::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
 {
+	SmartDashboard::PutString("Auto Selected", "Auto Straight");
 	DriveTrain->ResetPIDs();
+	DriveTrain->ShiftHigh();
+	State = 1;
 }
 
 void AutonomousStraight::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
 {
-	DriveTrain->SetDistance(60, 60);
-	if (DriveTrain->AtDistance())
+	switch(State)
 	{
-
+		case 1:
+			DriveTrain->SetDistance(60, 60);
+			if (DriveTrain->AtDistance())
+			{
+				State = 2;
+			}
+			break;
+		case 2:
+			DriveTrain->DisablePIDControl();
+			break;
 	}
 }

@@ -6,6 +6,7 @@
 
 void AutonomousLow::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
 {
+	SmartDashboard::PutString("Auto Selected", "Auto Low");
 	AutoState = 1;
 }
 

@@ -8,8 +8,9 @@ bool ShooterManager::IsShooterLocked()
 	return ShooterState == 3;
 }
 
-void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff)
+void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear)
 {
+	SmartDashboard::PutNumber("Shooter Axis", ShooterAxis);
 	if (LatchOn == PRESSED)
 	{
 		Latch.Set(LATCH_ON);
@@ -21,6 +22,14 @@ void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff)
 	if (fabs (ShooterAxis) >= .1)
 	{
 	ShooterMotor.Set(.5 * ShooterAxis);
+	}
+	if  (ShiftNeutral == PRESSED)
+	{
+		ShooterMotorShifter.Set(0);
+	}
+	if (ShiftGear == PRESSED)
+	{
+		ShooterMotorShifter.Set(1);
 	}
 }
 
@@ -45,21 +54,24 @@ void ShooterManager::ChargeShooter (int ButtonCharge)
 		ShooterCharge.Set(true);
 	}
 }
-int ShooterManager::ReturnState()
+
+void ShooterManager::DashboardInitialize()
 {
-	return ShooterState;
+	SmartDashboard::PutData("Latch", &Latch);
+	SmartDashboard::PutData("Shooter Motor", &ShooterMotor);
+	SmartDashboard::PutData("Shooter PID", &ShooterPID);
+	SmartDashboard::PutData("Encoder", &ShooterEncoder);	
 }
 
-void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton)
-{	
-	SmartDashboard::PutData("Shooter PID", &ShooterPID);
-	SmartDashboard::PutData("Encoder", &ShooterEncoder);
+void ShooterManager::DashboardLoop()
+{
 	SmartDashboard::PutNumber("Cake (Shooter Error)", ShooterPID.GetError());
 	SmartDashboard::PutNumber("Shooter State", ShooterState);
 	SmartDashboard::PutNumber("LatchedEncoder", LatchedEncoderValue);
-	SmartDashboard::PutData("Latch", &Latch);
-	SmartDashboard::PutData("Shooter Motor", &ShooterMotor);
-	
+}
+
+void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton)
+{		
 	if (!SafeToShoot)  
 	{
 		ShooterPID.Disable();		
