@@ -82,6 +82,7 @@ public:
 	{
 		DriveTrain.DashboardInitialize();
 		Shooter.DashboardInitialize();
+		Shooter.StartShooterAuto();
 		
 		AutoChoice* autonmousChoice = (AutoChoice*)AutoChooser.GetSelected();
 		autonmousChoice->Initialize(&DriveTrain, &Collector, &Shooter);

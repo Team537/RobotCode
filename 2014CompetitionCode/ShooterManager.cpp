@@ -40,7 +40,7 @@ void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff,
 
 void ShooterManager::StartShooterAuto ()
 {
-	ShooterState = 0;
+	ShooterState = 3;
 	ShooterCharge.Set(true);
 }
 
