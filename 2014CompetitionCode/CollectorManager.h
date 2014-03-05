@@ -8,6 +8,7 @@ class CollectorManager
 {
 	Solenoid CollectorRetract, CollectorDeploy;
 	Victor CollectorMotor;
+	Timer CollectorTimer;
 public:
 	CollectorManager(void):
 		CollectorRetract (COLLECTOR_RETRACT),

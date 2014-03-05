@@ -73,7 +73,7 @@ void AutonomousMiddle::Run(DriveTrainManager *DriveTrain, CollectorManager *Coll
 			break;
 			
 		case 6: //Shoot, also brings back to shooter state 3 (hopefully)		
-			Shooter->StateMachine(Collector->SafeToShoot(), 0, 1);
+			Shooter->StateMachine(Collector->SafeToShoot(), 0, 1, Collector);
 			BallShot = 1;
 			AutoTimer.Start();
 			if (AutoTimer.Get() > 2) 

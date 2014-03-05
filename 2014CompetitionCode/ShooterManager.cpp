@@ -5,12 +5,22 @@
 
 bool ShooterManager::IsShooterLocked()
 {
-	return ShooterState == 3;
+	return Latch.Get() == LATCH_ON;
+	
+}
+void ShooterManager::DisablePIDControl()
+{
+	ShooterPID.Disable();
 }
 
-void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear, int PIDOff)
+void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear, int PIDOff, bool SafeToShoot)
 {
 	SmartDashboard::PutNumber("Shooter Axis", ShooterAxis);
+	if (!SafeToShoot)  
+	{		
+		ShooterPID.Disable();
+		return;
+	}
 	if (PIDOff == PRESSED)
 	{
 		ShooterPID.Disable();
@@ -40,7 +50,7 @@ void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff,
 
 void ShooterManager::StartShooterAuto ()
 {
-	ShooterState = 3;
+	ShooterState = INITIALAIZE_SHOOTER;
 	ShooterCharge.Set(true);
 }
 
@@ -49,7 +59,7 @@ void ShooterManager::StartShooterTeleop ()
 	ShooterCharge.Set(true);
 	if (ShooterState == 0)
 	{
-		ShooterState = 3;
+		ShooterState = INITIALAIZE_SHOOTER;
 	}
 }
 void ShooterManager::ChargeShooter (int ButtonCharge)
@@ -76,24 +86,108 @@ void ShooterManager::DashboardLoop()
 	SmartDashboard::PutNumber("Shooter Position", ShooterEncoder.Get());
 }
 
-void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton)
+void ShooterManager::ResetShooterState()
+{
+	ShooterState = INITIALAIZE_SHOOTER;
+}
+
+void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton, CollectorManager *Collector)
 {	
 	SmartDashboard::PutNumber("Goal Button", GoalButton);	
 	SmartDashboard::PutNumber("Safe to Shoot", SafeToShoot);			
-	
-	if (!SafeToShoot)  
-	{
-		ShooterPID.Disable();		
-		return;
-	}
-	
+		
     switch (ShooterState) {
-	    case 0:
+	    case INITIALAIZE_SHOOTER:
 	    	// just in case we get in here without initializing
+	    	ShooterState = MOVE_TO_GOAL_POINT;
 	    	break;
 	    	
-	    case 1:	
+	    case MOVE_TO_GOAL_POINT:	
+    		// move to goal point;
+	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_GOAL_POINT_OFFSET);
+	    	ShooterPID.Enable();	    	
+			if (ShooterPID.OnTarget()) 
+			{
+				ShooterState = SHIFT_MOTOR_TO_NEUTRAL;
+				ShooterTimer.Stop();
+				ShooterTimer.Reset();
+				ShooterTimer.Start();
+			}
+			break;
+			
+	    case SHIFT_MOTOR_TO_NEUTRAL:	
+	    	// motor to neutral
+	    	ShooterMotorShifter.Set(SHOOT_SHIFT_NEUTRAL);
+	    	ShooterMotor.Set(.1);
+	    	ShooterPID.Disable();
+			
+			if (ShooterTimer.Get() > 0.25) {
+				ShooterState = WAIT_FOR_COMMAND;
+				ShooterTimer.Stop();
+				ShooterTimer.Reset();
+				ShooterTimer.Start();				
+			}
+			break;
+			
+	    case WAIT_FOR_COMMAND: 
+	    	
+			if (1 == GoalButton)
+			{
+				ShooterTimer.Stop();
+				ShooterTimer.Reset();
+				ShooterTimer.Start();
+				ShooterState = DEPLOY_COLLECTOR;
+			}			
+			
+			break;
+
+	    case DEPLOY_COLLECTOR:
+	    	Collector->RunCollector(1, 0, 0, 0, 0, 0);
+	    	if (ShooterTimer.Get() >= .6)
+	    	{
+	    		ShooterTimer.Stop();
+	    		ShooterTimer.Reset();
+	    		ShooterTimer.Start();
+	    		ShooterState = SHOOT_THE_BALL;
+	    	}
+	    	break;
+			
+	    case SHOOT_THE_BALL:
+	    	// fire!!
+	    	if (!SafeToShoot)
+	    	{
+	    		break;
+	    	}
+	    	
+	    	Latch.Set(LATCH_OFF);
+	    	ShooterMotor.Set(0);
+			if (ShooterTimer.Get() > .2) {
+				ShooterState = WINCH_MOTOR_TO_GEAR;	
+				ShooterTimer.Stop();
+				ShooterTimer.Reset();
+				ShooterTimer.Start();			
+			}
+			break;
+			
+	    case WINCH_MOTOR_TO_GEAR:
+	    	// re-engage winch and wait
+	    	ShooterMotorShifter.Set(SHOOT_SHIFT_NEUTRAL);
+			if (ShooterTimer.Get() > 0.25) 
+			{
+				ShooterTimer.Stop();
+				ShooterTimer.Reset();
+				ShooterState = RETRACT_ARM;
+				ShooterTimer.Start();
+			}
+			break;
+			
+	    case RETRACT_ARM:	
 	    	//  run motor to point LatchOn
+	    	if (!SafeToShoot)
+	    	{
+	    		ShooterPID.Disable();
+	    		break;
+	    	}
 	    	ShooterMotorShifter.Set(SHOOT_SHIFT_GEAR);
 	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_LATCH_OFF_POINT_OFFSET);
 	    	ShooterPID.Enable();
@@ -104,12 +198,12 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 	    			ShooterTimer.Stop();
 	    	   		ShooterTimer.Reset();
 	   		   		ShooterTimer.Start();
- 			   		ShooterState = 2;
+ 			   		ShooterState = RELATCH_ARM;
 	        	}
 	    	}
 	    	break;
 	    	
-	    case 2: 	
+	    case RELATCH_ARM: 	
 	    	//  latch on, motor off
 			Latch.Set(LATCH_ON);
 	    	ShooterPID.Disable();
@@ -117,126 +211,8 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 			{
 	    		ShooterTimer.Stop();
 				ShooterTimer.Reset();
-				ShooterState = 3;
+				ShooterState = MOVE_TO_GOAL_POINT;
 				  
-			}
-			break;
-			
-	    case 3: 	
-	    	//  wait for button
-			if (1 == TrussButton)
-			{
-				ShooterState = 4;
-			} 
-			else if (1 == GoalButton)
-			{
-				ShooterTimer.Start();
-				ShooterState = 8;
-			}			
-			break;
-			
-    	case 4:	
-    		// backmotor down to LatchOff;
-	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_LATCH_OFF_POINT_OFFSET);
-	    	ShooterPID.Enable();
-			if (ShooterPID.OnTarget()) 
-			{
-	    		ShooterTimer.Start();
-				ShooterState = 5;
-			}
-			break;
-			
-	    case 5:	
-	    	// release latch, move to TrussPoint
-	    	ShooterPID.Disable();
-	    	
-			Latch.Set(LATCH_OFF);
-		
-			if (ShooterTimer.Get() > .5) 
-			{
-	    		ShooterTimer.Stop();
-		  		ShooterTimer.Reset();
-	    		ShooterTimer.Start();
-				ShooterState = 6;
-	    	}
-			break;
-			
-	    case 6: 	
-	    	// waiting
-			if (ShooterTimer.Get() > 0.25)
-			{
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterState = 7;
-			}
-			break;
-			
-	    case 7:	// move to TrussPoint
-	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_TRUSS_POINT_OFFSET);
-	    	ShooterPID.Enable();
-			if (ShooterPID.OnTarget())
-			{
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterTimer.Start();
-				ShooterState = 11;
-			}			
-			break;
-			
-	    case 11: //Wait before truss shot
-	    	if (ShooterTimer.Get() > 0.5) 
-	    	{
-	    		ShooterTimer.Stop();
-	    		ShooterTimer.Reset();
-	    		ShooterState = 9;
-	    	}
-	    	
-	    case 8:	
-    		// move to goal point;
-	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_GOAL_POINT_OFFSET);
-	    	ShooterPID.Enable();	    	
-			if (ShooterPID.OnTarget() && ShooterTimer.Get() > 0.25) 
-			{
-				ShooterState = 9;
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterTimer.Start();
-			}
-			break;
-			
-	    case 9:	
-	    	// motor to neutral
-	    	ShooterMotorShifter.Set(SHOOT_SHIFT_NEUTRAL);
-	    	ShooterMotor.Set(.1);
-	    	ShooterPID.Disable();
-			
-			if (ShooterTimer.Get() > 0.25) {
-				ShooterState = 12;
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterTimer.Start();				
-			}
-			
-	    case 12:
-	    	// fire!!
-	    	Latch.Set(LATCH_OFF);
-	    	ShooterMotor.Set(0);
-			if (ShooterTimer.Get() > 2) {
-				ShooterState = 10;	
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterTimer.Start();			
-			}
-			
-	    case 10:
-	    	// re-engage winch and wait
-	    	ShooterMotorShifter.Set(SHOOT_SHIFT_NEUTRAL);
-			if (ShooterTimer.Get() > 0.25) 
-			{
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterState = 1;
-				ShooterTimer.Start();
 			}
 			break;
     }

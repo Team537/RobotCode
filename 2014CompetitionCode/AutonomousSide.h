@@ -12,6 +12,7 @@
 class AutonomousSide : public AutoChoice
 {
 	Timer AutoTimer;
+	Timer TotalAutoTime;
 public:		
 	void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
 	void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);

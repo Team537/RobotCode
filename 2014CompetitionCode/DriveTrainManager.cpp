@@ -21,7 +21,7 @@ void DriveTrainManager::RunDriveTrain(float JoystickLeft, float JoystickRight,
 		int ButtonHighShift, int ButtonLowShift) {
 	RunShifting(ButtonHighShift, ButtonLowShift);
 	RunRampSpeed(JoystickLeft, JoystickRight);
-	RunEncoders();
+	//RunEncoders();
 	RunClamping();
 	RunDriveMotors();
 }
@@ -118,9 +118,10 @@ void DriveTrainManager::DashboardInitialize() {
 }
 
 void DriveTrainManager::DashboardLoop() {
-	SmartDashboard::PutNumber("Right Cake", RightDrivePID.GetError());
-	SmartDashboard::PutNumber("Right Cake 2", RightDriveEncoder.Get());
-	SmartDashboard::PutNumber("Left Cake", LeftDrivePID.GetError());
+	//SmartDashboard::PutNumber("Right Cake", RightDrivePID.GetError());
+	SmartDashboard::PutNumber("Right Count", RightDriveEncoder.Get());
+	//SmartDashboard::PutNumber("Left Cake", LeftDrivePID.GetError());
+	SmartDashboard::PutNumber("Left Count", RightDriveEncoder.Get());
 }
 
 void DriveTrainManager::ShiftHigh() {

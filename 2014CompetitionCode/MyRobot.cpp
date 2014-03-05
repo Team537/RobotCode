@@ -44,7 +44,7 @@ public:
 		SecondaryController(SECONDARY_CONTROLLER),
 		lcd(DriverStationLCD::GetInstance())
 	{
-		ShooterMode = 0;
+		ShooterMode = SHOOTER_AUTO;
 	}
 	void Print ()
 	{
@@ -62,10 +62,12 @@ public:
 		if (SecondaryController.GetRawButton(BUTTON_BACK) == PRESSED)
 		{
 			ShooterMode = SHOOTER_MANUAL;
+			Shooter.DisablePIDControl();
 		}
 		if (SecondaryController.GetRawButton(BUTTON_START) == PRESSED)
 		{
 			ShooterMode = SHOOTER_AUTO;
+			Shooter.ResetShooterState();
 		}
 		SmartDashboard::PutNumber("Shooter Mode", ShooterMode);
 	}
@@ -117,11 +119,11 @@ public:
 			Collector.RunCollector(PrimaryController.GetRawButton(BUTTON_COLLECTOR_DEPLOY), PrimaryController.GetRawButton(BUTTON_COLLECTOR_RETRACT), PrimaryController.GetRawButton(BUTTON_COLLECT_OUT), PrimaryController.GetRawButton(BUTTON_COLLECT_IN), PrimaryController.GetRawButton(BUTTON_COLLECT_STOP), Shooter.IsShooterLocked());
 			if (ShooterMode == SHOOTER_AUTO)
 			{
-				Shooter.StateMachine(Collector.SafeToShoot(), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT));
+				Shooter.StateMachine(Collector.SafeToShoot(), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), &Collector);
 			}
 			else if (ShooterMode == SHOOTER_MANUAL)
 			{
-				Shooter.ManualShooter(SecondaryController.GetRawAxis(LEFT_JOYSTICK), SecondaryController.GetRawButton(BUTTON_LATCH_ON), SecondaryController.GetRawButton(BUTTON_LATCH_OFF), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_PID_DISABLE));
+				Shooter.ManualShooter(SecondaryController.GetRawAxis(LEFT_JOYSTICK), SecondaryController.GetRawButton(BUTTON_LATCH_ON), SecondaryController.GetRawButton(BUTTON_LATCH_OFF), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_PID_DISABLE), Collector.SafeToShoot());
 			}
 			Shooter.ChargeShooter(SecondaryController.GetRawButton(BUTTON_CHARGE_SHOOTER));
 			DriveTrain.DashboardLoop();

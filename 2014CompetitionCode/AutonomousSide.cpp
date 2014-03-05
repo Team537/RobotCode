@@ -9,6 +9,7 @@ void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager 
 	SmartDashboard::PutString("Auto Selected", "Auto Side");
 	AutoState = 1;
 	Shooter->ChargeShooter(1);
+	TotalAutoTime.Start();
 }
 
 void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
@@ -38,8 +39,10 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 				
 			case 3: //Wait for hot (only with side)
-				if (HotGoal || true)
+				if ((HotGoal) || (TotalAutoTime.Get() >= 5)) 
 				{
+					TotalAutoTime.Stop();
+					TotalAutoTime.Reset();
 					AutoState = 4;
 				}
 				break;
@@ -50,7 +53,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 					AutoState = 5;
 					AutoTimer.Start();
 				}
-				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0);
+				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0, Collector);
 				break;
 			
 			case 5: //Shoot, also brings back to shooter state 3
@@ -60,11 +63,11 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 					AutoTimer.Reset();
 					AutoState = 6;
 				}
-				Shooter->StateMachine(Collector->SafeToShoot(), 0, 1);
+				Shooter->StateMachine(Collector->SafeToShoot(), 0, 1, Collector);
 				break;
 
 			case 6: //Auto Done
-				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0);
+				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0, Collector);
 				break;
 	}
 }

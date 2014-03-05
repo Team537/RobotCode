@@ -2,6 +2,7 @@
 #define SHOOTER_H
 #include "Schematic.h"
 #include "NameSchematic.h"
+#include "CollectorManager.h"
 #include "WPILib.h"
 
 class ShooterManager
@@ -36,11 +37,13 @@ public:
 	bool IsShooterLocked();
 	void StartShooterAuto();
 	void StartShooterTeleop();
-	void StateMachine(bool SafeToShoot, int TrussButton, int GoalButton);
-	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear, int PIDOff);
+	void StateMachine(bool SafeToShoot, int TrussButton, int GoalButton, CollectorManager *Collector);
+	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear, int PIDOff, bool SafeToShoot);
 	void DashboardInitialize();
 	void DashboardLoop();
 	void ChargeShooter (int ButtonCharge);
+	void DisablePIDControl();
+	void ResetShooterState();
 	
 	
 private:
