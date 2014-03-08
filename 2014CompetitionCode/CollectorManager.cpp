@@ -24,7 +24,7 @@ void CollectorManager::RunCollector (int ButtonDeploy, int ButtonRetract, int Bu
 }
 void CollectorManager::RunCollectorRetract (int BtnRetract)
 {
-	if (BtnRetract == PRESSED)
+	if (BtnRetract == PRESSED) 
 	{
 		CollectorDeploy.Set(OFF);
 		CollectorRetract.Set(ON);

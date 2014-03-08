@@ -128,7 +128,6 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 				ShooterTimer.Stop();
 				ShooterTimer.Reset();
 				ShooterTimer.Start();
-				Collector->RunCollector(0,1,0,0,0,1);
 			}
 			break;
 			

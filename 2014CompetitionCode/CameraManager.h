@@ -6,8 +6,14 @@
 
 class CameraManager
 {
+	Timer CameraTimer;
 	bool LastValue;
+	double Rate;
+	int Counter;
 public:
+	
+	void CameraStop();
+	void CameraStart();
 	bool IsHotGoal();
 private:
 	
