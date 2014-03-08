@@ -18,18 +18,18 @@ public:
 		DriveShift(DRIVE_SHIFT),
 		LeftDriveEncoder(LEFT_DRIVE_ENCODER,true,CounterBase::k4X),
 		RightDriveEncoder(RIGHT_DRIVE_ENCODER,true,CounterBase::k4X),
-		LeftDrivePID (0.015, 0, 0.01, &LeftDriveEncoder, &LeftDriveMotor),
-		RightDrivePID (-0.015, 0, 0.01, &RightDriveEncoder, &RightDriveMotor)
+		LeftDrivePID (-0.02, 0, 0.01, &LeftDriveEncoder, &LeftDriveMotor),
+		RightDrivePID (-0.02, 0, 0.01, &RightDriveEncoder, &RightDriveMotor)
 		{
 			LeftDriveEncoder.SetPIDSourceParameter(PIDSource::kDistance);
 			LeftDriveEncoder.SetDistancePerPulse(0.05026548);
 			LeftDriveEncoder.Start();
-			LeftDrivePID.SetAbsoluteTolerance(5);
+			LeftDrivePID.SetAbsoluteTolerance(10);
 			
 			RightDriveEncoder.SetPIDSourceParameter(PIDSource::kDistance);
 			RightDriveEncoder.SetDistancePerPulse(0.05026548);
 			RightDriveEncoder.Start();
-			RightDrivePID.SetAbsoluteTolerance(5);
+			RightDrivePID.SetAbsoluteTolerance(10);
 		}
 	void RunDriveTrain (float Left, float Right, int High, int Low);
 	void StartDriveTrain ();
@@ -43,7 +43,7 @@ public:
 	void DashboardLoop();
 	void ShiftHigh();
 	void ShiftLow();
-	
+	void EncoderReset();
 private:
 	float LeftDifference, RightDifference;
 	float OldLeftSpeed, OldRightSpeed;

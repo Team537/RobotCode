@@ -5,6 +5,7 @@
 #include "DriveTrainManager.h"
 #include "CollectorManager.h"
 #include "ShooterManager.h"
+#include "CameraManager.h"
 #include "AutonomousLow.h"
 #include "AutonomousSide.h"
 #include "AutonomousMiddle.h"
@@ -36,6 +37,7 @@ private:
 	AutonomousLow AutoLow;
 	AutonomousSide AutoSide;
 	AutonomousMiddle AutoMiddle;
+	//CameraManager Camera2;
 	
 public:
 	
@@ -100,7 +102,6 @@ public:
 			Shooter.DashboardLoop();
 		}
 	}
-	
 	void OperatorControl(void)
 	{
 		DriveTrain.DashboardInitialize();
@@ -113,13 +114,15 @@ public:
 		
 		while (IsOperatorControl())
 		{
+			//bool hot = Camera2.IsHotGoal();
+			
 			UpdateShooterMode();
 			comp.checkCompressor();
 			DriveTrain.RunDriveTrain(PrimaryController.GetRawAxis(LEFT_JOYSTICK), PrimaryController.GetRawAxis(RIGHT_JOYSTICK), (int)PrimaryController.GetRawButton(BUTTON_HIGH_DRIVE_SHIFT), (int)PrimaryController.GetRawButton(BUTTON_LOW_DRIVE_SHIFT));
-			Collector.RunCollector(PrimaryController.GetRawButton(BUTTON_COLLECTOR_DEPLOY), PrimaryController.GetRawButton(BUTTON_COLLECTOR_RETRACT), PrimaryController.GetRawButton(BUTTON_COLLECT_OUT), PrimaryController.GetRawButton(BUTTON_COLLECT_IN), PrimaryController.GetRawButton(BUTTON_COLLECT_STOP), Shooter.IsShooterLocked());
+			Collector.RunCollector(PrimaryController.GetRawButton(BUTTON_COLLECTOR_DEPLOY), PrimaryController.GetRawButton(BUTTON_COLLECTOR_RETRACT), PrimaryController.GetRawButton(BUTTON_COLLECT_OUT) || PrimaryController.GetRawButton(BUTTON_COLLECT_OUT2), PrimaryController.GetRawButton(BUTTON_COLLECT_IN), PrimaryController.GetRawButton(BUTTON_COLLECT_STOP), Shooter.IsShooterLocked());
 			if (ShooterMode == SHOOTER_AUTO)
 			{
-				Shooter.StateMachine(Collector.SafeToShoot(), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), &Collector);
+				Shooter.StateMachine(Collector.SafeToShoot(), SecondaryController.GetRawButton(BUTTON_GOAL_SHOT), SecondaryController.GetRawButton(BUTTON_TRUSS_SHOT), &Collector);
 			}
 			else if (ShooterMode == SHOOTER_MANUAL)
 			{

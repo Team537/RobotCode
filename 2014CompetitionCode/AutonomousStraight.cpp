@@ -17,7 +17,7 @@ void AutonomousStraight::Run(DriveTrainManager *DriveTrain, CollectorManager *Co
 	switch(State)
 	{
 		case 1:
-			DriveTrain->SetDistance(60, 60);
+			DriveTrain->SetDistance(-60, -60);
 			if (DriveTrain->AtDistance())
 			{
 				State = 2;

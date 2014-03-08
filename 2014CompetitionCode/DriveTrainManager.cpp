@@ -113,15 +113,15 @@ void DriveTrainManager::DisablePIDControl() {
 void DriveTrainManager::DashboardInitialize() {
 	SmartDashboard::PutData("Right drive PID", &RightDrivePID);
 	SmartDashboard::PutData("Left drive PID", &LeftDrivePID);
-	SmartDashboard::PutData("Right encoder", &RightDriveEncoder);
-	SmartDashboard::PutData("Left encoder", &LeftDriveEncoder);
+	//SmartDashboard::PutData("Right encoder", &RightDriveEncoder);
+	//SmartDashboard::PutData("Left encoder", &LeftDriveEncoder);
 }
 
 void DriveTrainManager::DashboardLoop() {
 	//SmartDashboard::PutNumber("Right Cake", RightDrivePID.GetError());
 	SmartDashboard::PutNumber("Right Count", RightDriveEncoder.Get());
 	//SmartDashboard::PutNumber("Left Cake", LeftDrivePID.GetError());
-	SmartDashboard::PutNumber("Left Count", RightDriveEncoder.Get());
+	SmartDashboard::PutNumber("Left Count", LeftDriveEncoder.Get());
 }
 
 void DriveTrainManager::ShiftHigh() {
@@ -130,4 +130,8 @@ void DriveTrainManager::ShiftHigh() {
 void DriveTrainManager::ShiftLow() {
 	DriveShift.Set(LOW_GEAR);
 }
-
+void DriveTrainManager::EncoderReset()
+{
+	LeftDriveEncoder.Reset();
+	RightDriveEncoder.Reset();
+}

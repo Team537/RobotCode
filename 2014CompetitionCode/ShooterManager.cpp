@@ -34,9 +34,9 @@ void ShooterManager::ManualShooter(float ShooterAxis, int LatchOn, int LatchOff,
 	{
 		Latch.Set(LATCH_OFF);
 	}
-	if (fabs (ShooterAxis) >= .1)
+	if (fabs (ShooterAxis) >= .15)
 	{
-		ShooterMotor.Set(.5 * ShooterAxis);
+		ShooterMotor.Set(SHOOTER_MANUAL_WINCH_SPEED * ShooterAxis);
 	}
 	if  (ShiftNeutral == PRESSED)
 	{
@@ -72,17 +72,17 @@ void ShooterManager::ChargeShooter (int ButtonCharge)
 
 void ShooterManager::DashboardInitialize()
 {
-	SmartDashboard::PutData("Latch", &Latch);
-	SmartDashboard::PutData("Shooter Motor", &ShooterMotor);
+	//SmartDashboard::PutData("Latch", &Latch);
+	//SmartDashboard::PutData("Shooter Motor", &ShooterMotor);
 	SmartDashboard::PutData("Shooter PID", &ShooterPID);
-	SmartDashboard::PutData("Shooter Encoder", &ShooterEncoder);	
+	//SmartDashboard::PutData("Shooter Encoder", &ShooterEncoder);	
 }
 
 void ShooterManager::DashboardLoop()
 {
-	SmartDashboard::PutNumber("Cake (Shooter Error)", ShooterPID.GetError());
+	//SmartDashboard::PutNumber("Cake (Shooter Error)", ShooterPID.GetError());
 	SmartDashboard::PutNumber("Shooter State", ShooterState);
-	SmartDashboard::PutNumber("LatchedEncoder", LatchedEncoderValue);
+	//SmartDashboard::PutNumber("LatchedEncoder", LatchedEncoderValue);
 	SmartDashboard::PutNumber("Shooter Position", ShooterEncoder.Get());
 }
 
@@ -94,7 +94,7 @@ void ShooterManager::ResetShooterState()
 void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton, CollectorManager *Collector)
 {	
 	SmartDashboard::PutNumber("Goal Button", GoalButton);	
-	SmartDashboard::PutNumber("Safe to Shoot", SafeToShoot);			
+	SmartDashboard::PutNumber("Safe to Shoot", SafeToShoot);
 		
     switch (ShooterState) {
 	    case INITIALAIZE_SHOOTER:
@@ -104,6 +104,8 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 	    	
 	    case MOVE_TO_GOAL_POINT:	
     		// move to goal point;
+
+			ShooterMotorShifter.Set(SHOOT_SHIFT_GEAR);
 	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_GOAL_POINT_OFFSET);
 	    	ShooterPID.Enable();	    	
 			if (ShooterPID.OnTarget()) 
@@ -125,7 +127,8 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 				ShooterState = WAIT_FOR_COMMAND;
 				ShooterTimer.Stop();
 				ShooterTimer.Reset();
-				ShooterTimer.Start();				
+				ShooterTimer.Start();
+				Collector->RunCollector(0,1,0,0,0,1);
 			}
 			break;
 			
