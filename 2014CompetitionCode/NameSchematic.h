@@ -48,7 +48,7 @@
 #define NOT_PRESSED 0
 
 // camera
-#define CAMERA_IP_ADDRESS "10.5.36.11"
+#define CAMERA_IP_ADDRESS "10.5.37.11"
 #define YELLOW_PIXEL_THRESHOLD 1000
 
 #endif

@@ -10,8 +10,16 @@ class CameraManager
 	bool LastValue;
 	double Rate;
 	int Counter;
-public:
 	
+	
+public:
+
+	CameraManager(void)
+	{
+		Rate = .25;
+		Counter = 1;
+		
+	}
 	void CameraStop();
 	void CameraStart();
 	bool IsHotGoal();

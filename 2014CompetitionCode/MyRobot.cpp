@@ -37,7 +37,7 @@ private:
 	AutonomousLow AutoLow;
 	AutonomousSide AutoSide;
 	AutonomousMiddle AutoMiddle;
-	//CameraManager Camera2;
+	CameraManager Camera2;
 	
 public:
 	
@@ -106,7 +106,7 @@ public:
 	{
 		DriveTrain.DashboardInitialize();
 		Shooter.DashboardInitialize();
-		
+		Camera2.CameraStart();
 		PrintTime.Start();
 		Collector.StartCollectorTeleop();
 		DriveTrain.StartDriveTrain();
@@ -114,8 +114,8 @@ public:
 		
 		while (IsOperatorControl())
 		{
-			//bool hot = Camera2.IsHotGoal();
-			
+			bool hot = Camera2.IsHotGoal();
+			//ACamera2.IsHotGoal();
 			UpdateShooterMode();
 			comp.checkCompressor();
 			DriveTrain.RunDriveTrain(PrimaryController.GetRawAxis(LEFT_JOYSTICK), PrimaryController.GetRawAxis(RIGHT_JOYSTICK), (int)PrimaryController.GetRawButton(BUTTON_HIGH_DRIVE_SHIFT), (int)PrimaryController.GetRawButton(BUTTON_LOW_DRIVE_SHIFT));
