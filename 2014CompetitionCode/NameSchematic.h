@@ -49,6 +49,6 @@
 
 // camera
 #define CAMERA_IP_ADDRESS "10.5.37.11"
-#define YELLOW_PIXEL_THRESHOLD 1000
+#define YELLOW_PIXEL_THRESHOLD 4000
 
 #endif

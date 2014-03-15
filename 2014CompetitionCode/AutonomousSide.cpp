@@ -4,7 +4,7 @@
 #include "AutonomousSide.h"
 #include "DriveTrainManager.h"
 
-void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
+void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera)
 {
 	SmartDashboard::PutString("Auto Selected", "Auto Side");
 	AutoState = 1;
@@ -13,11 +13,11 @@ void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager 
 	DriveTrain->EncoderReset();
 }
 
-void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
+void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera)
 {
 	SmartDashboard::PutNumber("Side State", AutoState);
 	
-	//HotGoal = Camera.IsHotGoal();
+	HotGoal = Camera->IsHotGoal();
 	
 	switch(AutoState)
 	{
@@ -43,7 +43,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 				
 			case 3: //Wait for hot (only with side)
-				if (/*(HotGoal) ||*/ (TotalAutoTime.Get() >= 5)) 
+				if ((HotGoal) || (TotalAutoTime.Get() >= 5)) 
 				{
 					TotalAutoTime.Stop();
 					TotalAutoTime.Reset();
@@ -75,4 +75,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				Collector->RunCollector(0,0,0,0,1,0);
 				break;
 	}
+}
+void AutonomousSide::Finished(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera){
+	Camera->CameraStop();
 }

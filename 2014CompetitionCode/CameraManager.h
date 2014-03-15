@@ -20,6 +20,7 @@ public:
 		Counter = 1;
 		
 	}
+	void CameraInitialize();
 	void CameraStop();
 	void CameraStart();
 	bool IsHotGoal();

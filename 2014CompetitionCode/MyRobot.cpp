@@ -6,9 +6,7 @@
 #include "CollectorManager.h"
 #include "ShooterManager.h"
 #include "CameraManager.h"
-#include "AutonomousLow.h"
 #include "AutonomousSide.h"
-#include "AutonomousMiddle.h"
 #include "AutonomousStraight.h"
 #include "AutoChoice.h"
 #include <cmath>
@@ -34,9 +32,7 @@ private:
 	Timer PrintTime, AutoTimer, AutoTimeDrive;
 	SendableChooser AutoChooser;
 	AutonomousStraight AutoStraight;
-	AutonomousLow AutoLow;
 	AutonomousSide AutoSide;
-	AutonomousMiddle AutoMiddle;
 	CameraManager Camera2;
 	
 public:
@@ -75,9 +71,8 @@ public:
 	}
 	void RobotInit()
 	{
+		Camera2.CameraInitialize();
 		AutoChooser.AddDefault("Side lineup, High goal", &AutoSide);
-		AutoChooser.AddObject("Side lineup, Low goal", &AutoLow);
-		AutoChooser.AddObject("Middle Lineup, High goal", &AutoMiddle);
 		AutoChooser.AddObject("Drive straight, No goal", &AutoStraight);
 		SmartDashboard::PutData("Chooser", &AutoChooser);
 	}
@@ -88,33 +83,31 @@ public:
 		Shooter.DashboardInitialize();
 		Shooter.StartShooterAuto();
 		
-		AutoChoice* autonmousChoice = (AutoChoice*)AutoChooser.GetSelected();
-		autonmousChoice->Initialize(&DriveTrain, &Collector, &Shooter);
-
+		AutoChoice* autonomousChoice = (AutoChoice*)AutoChooser.GetSelected();
+		autonomousChoice->Initialize(&DriveTrain, &Collector, &Shooter, &Camera2);
+		
 		//AutoStraight.Initialize(&DriveTrain, &Collector, &Shooter);
-				
-		while (IsAutonomous())
+		while (IsAutonomous() && IsEnabled())
 		{			
 			comp.checkCompressor();
-			autonmousChoice->Run(&DriveTrain, &Collector, &Shooter);
+			autonomousChoice->Run(&DriveTrain, &Collector, &Shooter, &Camera2);
 			//AutoStraight.Run(&DriveTrain, &Collector, &Shooter);	
 			DriveTrain.DashboardLoop();		
 			Shooter.DashboardLoop();
 		}
+		autonomousChoice->Finished(&DriveTrain, &Collector, &Shooter, &Camera2);
 	}
 	void OperatorControl(void)
 	{
 		DriveTrain.DashboardInitialize();
 		Shooter.DashboardInitialize();
-		Camera2.CameraStart();
 		PrintTime.Start();
 		Collector.StartCollectorTeleop();
 		DriveTrain.StartDriveTrain();
 		Shooter.StartShooterTeleop();
 		
-		while (IsOperatorControl())
+		while (IsOperatorControl() && IsEnabled())
 		{
-			bool hot = Camera2.IsHotGoal();
 			//ACamera2.IsHotGoal();
 			UpdateShooterMode();
 			comp.checkCompressor();
@@ -133,6 +126,8 @@ public:
 			Shooter.DashboardLoop();
 			Print();
 		}
+		SmartDashboard::PutBoolean("Disabled", IsEnabled());
+		
 	}
 };
 

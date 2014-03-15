@@ -162,14 +162,6 @@ SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutoChoice.o
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousLow.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousLow.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousMiddle.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousMiddle.cpp
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.o : C:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
@@ -203,8 +195,6 @@ SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/ShooterManag
 
 
 OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutoChoice.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousLow.o \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousMiddle.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousStraight.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CameraManager.o \
@@ -224,10 +214,9 @@ _clean :: SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_cl
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_clean : 
 	$(TRACE_FLAG)if [ -d "SimpleTemplate_partialImage" ]; then cd "SimpleTemplate_partialImage"; rm -rf $(MODE_DIR); fi
 
-DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutoChoice.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousLow.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousMiddle.d \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousStraight.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CameraManager.d \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CollectorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrainManager.d \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/ShooterManager.d
+DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutoChoice.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousSide.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/AutonomousStraight.d \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CameraManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CollectorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/CompressorManager.d \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/DriveTrainManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/MyRobot.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/2014CompetitionCode/ShooterManager.d
 -include $(DEP_FILES)
 
 

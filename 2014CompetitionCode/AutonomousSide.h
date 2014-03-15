@@ -14,11 +14,11 @@ class AutonomousSide : public AutoChoice
 {
 	Timer AutoTimer;
 	Timer TotalAutoTime;
-	//CameraManager Camera;
 	
 public:			
-	void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
-	void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter);
+	void Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera);
+	void Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera);
+	void Finished(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera);
 	int HotGoal;
 private:
 	int AutoState;

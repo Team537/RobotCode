@@ -7,15 +7,14 @@
 #include "ShooterManager.h"
 #include "AutoChoice.h"
 
-void AutoChoice::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
-{
+void AutoChoice::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera){
 	SmartDashboard::PutString("Auto Selected", "No Choice");
 }
 
-void AutoChoice::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
-{
+void AutoChoice::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera){
 }
-
-AutoChoice::~AutoChoice()
-{
+void AutoChoice::Finished(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera){
+	
+}
+AutoChoice::~AutoChoice(){
 }

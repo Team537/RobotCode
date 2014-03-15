@@ -6,7 +6,7 @@
 
 bool CameraManager::IsHotGoal()
 {
-	    AxisCamera& camera = AxisCamera::GetInstance();
+		AxisCamera& camera = AxisCamera::GetInstance();
 		SmartDashboard::PutNumber("counter", Counter);
 
 		/*if (!camera.IsFreshImage())
@@ -14,20 +14,16 @@ bool CameraManager::IsHotGoal()
 			SmartDashboard::PutString("Image", "Not Fresh");
 			return LastValue;
 		}*/
-		SmartDashboard::PutNumber("line 17", 17);
-		//if(Counter * Rate >= CameraTimer.Get())
-		//{
-			
-			//return LastValue;
-		//}
+		if(Counter * Rate >= CameraTimer.Get())
+		{
+			return LastValue;
+		}
 		ColorImage *CurrentImage = camera.GetImage();
 		SmartDashboard::PutString("Image", "Fresh");	
-		BinaryImage* ThresholdImage = CurrentImage->ThresholdRGB(100, 255, 100, 255, 100, 255);
-		SmartDashboard::PutNumber("line 26", 26);
+		BinaryImage* ThresholdImage = CurrentImage->ThresholdHSL(15, 55, 50, 255, 50, 255);
 		ImageInfo info;
 		Image *img = ThresholdImage->GetImaqImage();
 		imaqGetImageInfo(img, &info);
-		SmartDashboard::PutNumber("line 30", 30);
 		
 		int yellowCount = 0;
 		unsigned char * pixels = (unsigned char *) info.imageStart;
@@ -43,15 +39,17 @@ bool CameraManager::IsHotGoal()
 		}
 		SmartDashboard::PutNumber("y res", y);
 		SmartDashboard::PutNumber("x res", x);
-		SmartDashboard::PutNumber("line 42", 42);
 		LastValue = yellowCount > YELLOW_PIXEL_THRESHOLD;
 		
 		SmartDashboard::PutNumber("Yellow Count", yellowCount);
 		delete CurrentImage;
 		delete ThresholdImage;
-		SmartDashboard::PutNumber("line 49", 49);
 		Counter++;
 		return LastValue;
+	}
+	void CameraManager::CameraInitialize()
+	{
+		AxisCamera& camera = AxisCamera::GetInstance();
 	}
 	void CameraManager::CameraStart()
 	{
@@ -62,6 +60,7 @@ bool CameraManager::IsHotGoal()
 	{
 		CameraTimer.Stop();
 		CameraTimer.Reset();
+		AxisCamera::DeleteInstance();
 	}
 
 //  rcoe@wi.rr.com
