@@ -71,6 +71,7 @@ public:
 	}
 	void RobotInit()
 	{
+		SmartDashboard::PutNumber("Yellow Count", 0);
 		Camera2.CameraInitialize();
 		AutoChooser.AddDefault("Side lineup, High goal", &AutoSide);
 		AutoChooser.AddObject("Drive straight, No goal", &AutoStraight);
@@ -91,7 +92,6 @@ public:
 		{			
 			comp.checkCompressor();
 			autonomousChoice->Run(&DriveTrain, &Collector, &Shooter, &Camera2);
-			//AutoStraight.Run(&DriveTrain, &Collector, &Shooter);	
 			DriveTrain.DashboardLoop();		
 			Shooter.DashboardLoop();
 		}

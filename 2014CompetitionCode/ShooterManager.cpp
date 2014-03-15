@@ -73,7 +73,7 @@ void ShooterManager::ChargeShooter (int ButtonCharge)
 void ShooterManager::DashboardInitialize()
 {
 	//SmartDashboard::PutData("Latch", &Latch);
-	//SmartDashboard::PutData("Shooter Motor", &ShooterMotor);
+	SmartDashboard::PutData("Shooter Motor", &ShooterMotor);
 	SmartDashboard::PutData("Shooter PID", &ShooterPID);
 	//SmartDashboard::PutData("Shooter Encoder", &ShooterEncoder);	
 }
@@ -99,12 +99,24 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
     switch (ShooterState) {
 	    case INITIALAIZE_SHOOTER:
 	    	// just in case we get in here without initializing
-	    	ShooterState = MOVE_TO_GOAL_POINT;
+	    	ShooterState = WAIT_FOR_COMMAND;
 	    	break;
 	    	
+	    case WAIT_FOR_COMMAND: 
+	    	ShooterPID.Disable();
+			if (1 == GoalButton)
+			{
+				ShooterTimer.Stop();
+				ShooterTimer.Reset();
+				ShooterTimer.Start();
+				ShooterState = MOVE_TO_GOAL_POINT;
+			}			
+			
+			break;
+			
 	    case MOVE_TO_GOAL_POINT:	
     		// move to goal point;
-
+	    	Collector->RunCollector(1, 0, 0, 0, 0, 0);
 			ShooterMotorShifter.Set(SHOOT_SHIFT_GEAR);
 	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_GOAL_POINT_OFFSET);
 	    	ShooterPID.Enable();	    	
@@ -123,36 +135,14 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 	    	ShooterMotor.Set(.1);
 	    	ShooterPID.Disable();
 			
-			if (ShooterTimer.Get() > 0.25) {
-				ShooterState = WAIT_FOR_COMMAND;
+			if (ShooterTimer.Get() > 0.5) {
+				ShooterState = SHOOT_THE_BALL;
 				ShooterTimer.Stop();
 				ShooterTimer.Reset();
 				ShooterTimer.Start();
 			}
 			break;
 			
-	    case WAIT_FOR_COMMAND: 
-	    	
-			if (1 == GoalButton)
-			{
-				ShooterTimer.Stop();
-				ShooterTimer.Reset();
-				ShooterTimer.Start();
-				ShooterState = DEPLOY_COLLECTOR;
-			}			
-			
-			break;
-
-	    case DEPLOY_COLLECTOR:
-	    	Collector->RunCollector(1, 0, 0, 0, 0, 0);
-	    	if (ShooterTimer.Get() >= .6)
-	    	{
-	    		ShooterTimer.Stop();
-	    		ShooterTimer.Reset();
-	    		ShooterTimer.Start();
-	    		ShooterState = SHOOT_THE_BALL;
-	    	}
-	    	break;
 			
 	    case SHOOT_THE_BALL:
 	    	// fire!!
@@ -213,7 +203,7 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 			{
 	    		ShooterTimer.Stop();
 				ShooterTimer.Reset();
-				ShooterState = MOVE_TO_GOAL_POINT;
+				ShooterState = WAIT_FOR_COMMAND;
 				  
 			}
 			break;

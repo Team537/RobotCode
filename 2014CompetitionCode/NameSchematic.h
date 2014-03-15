@@ -39,7 +39,6 @@
 #define WINCH_MOTOR_TO_GEAR 5
 #define RETRACT_ARM 6
 #define RELATCH_ARM 7
-#define DEPLOY_COLLECTOR 8
 
 // Stuff
 #define ON 1
