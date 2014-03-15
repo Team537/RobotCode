@@ -41,7 +41,7 @@ public:
 	void ManualShooter(float ShooterAxis, int LatchOn, int LatchOff, int ShiftNeutral, int ShiftGear, int PIDOff, bool SafeToShoot);
 	void DashboardInitialize();
 	void DashboardLoop();
-	void ChargeShooter (int ButtonCharge);
+	void ChargeShooter ();
 	void DisablePIDControl();
 	void ResetShooterState();
 	

@@ -62,12 +62,9 @@ void ShooterManager::StartShooterTeleop ()
 		ShooterState = INITIALAIZE_SHOOTER;
 	}
 }
-void ShooterManager::ChargeShooter (int ButtonCharge)
+void ShooterManager::ChargeShooter ()
 {
-	if (ButtonCharge == true)
-	{
-		ShooterCharge.Set(true);
-	}
+	ShooterCharge.Set(true);
 }
 
 void ShooterManager::DashboardInitialize()
@@ -84,6 +81,7 @@ void ShooterManager::DashboardLoop()
 	SmartDashboard::PutNumber("Shooter State", ShooterState);
 	//SmartDashboard::PutNumber("LatchedEncoder", LatchedEncoderValue);
 	SmartDashboard::PutNumber("Shooter Position", ShooterEncoder.Get());
+	SmartDashboard::PutNumber("Shooter Limit Switch", ShooterLimitSwitch.Get());
 }
 
 void ShooterManager::ResetShooterState()
@@ -91,10 +89,15 @@ void ShooterManager::ResetShooterState()
 	ShooterState = INITIALAIZE_SHOOTER;
 }
 
-void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalButton, CollectorManager *Collector)
+void ShooterManager::StateMachine(bool SafeToShoot, int ResetButton, int GoalButton, CollectorManager *Collector)
 {	
 	SmartDashboard::PutNumber("Goal Button", GoalButton);	
 	SmartDashboard::PutNumber("Safe to Shoot", SafeToShoot);
+	
+	if (ResetButton == 1 && Collector->SafeToShoot())
+	{
+		ShooterState = WINCH_TO_LIMIT_SWITCH;
+	}
 		
     switch (ShooterState) {
 	    case INITIALAIZE_SHOOTER:
@@ -132,7 +135,7 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 	    case SHIFT_MOTOR_TO_NEUTRAL:	
 	    	// motor to neutral
 	    	ShooterMotorShifter.Set(SHOOT_SHIFT_NEUTRAL);
-	    	ShooterMotor.Set(.1);
+	    	ShooterMotor.Set(WINCH_UP * .1);
 	    	ShooterPID.Disable();
 			
 			if (ShooterTimer.Get() > 0.5) {
@@ -181,7 +184,7 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 	    		break;
 	    	}
 	    	ShooterMotorShifter.Set(SHOOT_SHIFT_GEAR);
-	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SHOOTER_LATCH_OFF_POINT_OFFSET);
+	    	ShooterPID.SetSetpoint(LatchedEncoderValue + SWITCH_TO_LIMIT_SWITCH_VALUE);
 	    	ShooterPID.Enable();
 	    	if (ShooterPID.OnTarget()) //|| ShooterLimitSwitch.Get() == SHOOT_LIMIT_HIT)
 	    	{
@@ -190,8 +193,20 @@ void ShooterManager::StateMachine(bool SafeToShoot, int TrussButton, int GoalBut
 	    			ShooterTimer.Stop();
 	    	   		ShooterTimer.Reset();
 	   		   		ShooterTimer.Start();
- 			   		ShooterState = RELATCH_ARM;
+ 			   		ShooterState = WINCH_TO_LIMIT_SWITCH;
 	        	}
+	    	}
+	    	break;
+	    
+	    case WINCH_TO_LIMIT_SWITCH:
+			Latch.Set(LATCH_OFF);
+	    	ShooterMotor.Set(WINCH_DOWN * .5);
+	    	if (ShooterLimitSwitch.Get() == 0)
+	    	{
+	    		ShooterTimer.Stop();
+	    		ShooterTimer.Reset();
+	    		ShooterTimer.Start();
+	    		ShooterState = RELATCH_ARM;
 	    	}
 	    	break;
 	    	

@@ -16,9 +16,8 @@
 #define BUTTON_HIGH_DRIVE_SHIFT 8
 
 // Secondary Controller
-#define BUTTON_PRIME_SHOOTER 5
-#define BUTTON_GOAL_SHOT 8
-#define BUTTON_TRUSS_SHOT 6
+#define BUTTON_GOAL_SHOT 6
+#define BUTTON_RESET_SHOT 5
 #define LEFT_JOYSTICK 2
 #define BUTTON_LATCH_ON 1
 #define BUTTON_LATCH_OFF 2
@@ -42,7 +41,7 @@
 #define RIGHT_DRIVE_ENCODER 1,3,1,4
 #define LEFT_DRIVE_ENCODER 1,5,1,6
 #define SHOOTER_ENCODER 1,7,1,8
-#define SHOOTER_LIMIT_SWITCH 1,9
+#define SHOOTER_LIMIT_SWITCH 1,10
 
 // Robot Digital Outputs
 #define DRIVE_SHIFT 1,1
@@ -52,10 +51,17 @@
 #define SHOOTER_CHARGE 1,5
 #define LATCH 1,6
 
-// Robot Drive Directions
+// Robot Drive Directions - PRACTICE SETTINGS
 #define LEFT_DRIVE_DIRECTION 1
-#define RIGHT_DRIVE_DIRECTION -1
+#define RIGHT_DRIVE_DIRECTION 1
 #define LEFT_PID_ADJUST 1
-#define RIGHT_PID_ADJUST -1
+#define RIGHT_PID_ADJUST 1
+
+// Robot Drive Directions - COMPETITION SETTINGS
+//#define LEFT_DRIVE_DIRECTION 1
+//#define RIGHT_DRIVE_DIRECTION -1
+//#define LEFT_PID_ADJUST 1
+//#define RIGHT_PID_ADJUST -1
+
 
 #endif
