@@ -18,7 +18,7 @@
 
 // Robot
 
-#define LEFT_DRIVE 1,3
+#define LEFT_DRIVE 1,2
 #define RIGHT_DRIVE 1,4
 #define SHOOTER 1,8
 #define ANGLE 1,1

@@ -11,6 +11,7 @@ void AutonomousSide::Initialize(DriveTrainManager *DriveTrain, CollectorManager 
 	Shooter->ChargeShooter();
 	TotalAutoTime.Start();
 	DriveTrain->EncoderReset();
+	Camera->CameraStart();
 }
 
 void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera)
@@ -20,7 +21,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 	switch(AutoState)
 	{
 			case 1: //move forward
-				DriveTrain->ShiftLow();
+				DriveTrain->ShiftHigh();
 				DriveTrain->SetDistance(-164, -164);
 				if (DriveTrain->AtDistance())
 				{
@@ -32,18 +33,18 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 			case 2: //Deploy Collector
 				DriveTrain->DisablePIDControl();
 				HotGoal = Camera->IsHotGoal();
-				Collector->RunCollector(1, 0, 0, 0, 0, 0);
 				if (AutoTimer.Get() > .5)
 				{
 					AutoTimer.Stop();
 					AutoTimer.Reset();
+					AutoTimer.Start();
 					AutoState = 3;
 				}
 				break;
 				
 			case 3: //Wait for hot (only with side)
 				HotGoal = Camera->IsHotGoal();
-				if ((HotGoal) || (TotalAutoTime.Get() >= 5)) 
+				if ((HotGoal) || (TotalAutoTime.Get() >= 6)) 
 				{
 					TotalAutoTime.Stop();
 					TotalAutoTime.Reset();
@@ -61,7 +62,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 			
 			case 5: //Shoot, also brings back to shooter state 3
-				if (!Shooter->IsShooterLocked() && AutoTimer.Get() > 2)
+				if (AutoTimer.Get() > 2)
 				{
 					AutoTimer.Stop();
 					AutoTimer.Reset();

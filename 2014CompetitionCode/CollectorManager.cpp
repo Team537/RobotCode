@@ -36,7 +36,7 @@ void CollectorManager::RunCollectorDeploy (int BtnDeploy)
 	{
 		CollectorRetract.Set(OFF);
 		CollectorDeploy.Set(ON);
-		CollectorMotor.Set(.5);
+		CollectorMotor.Set(1);
 	}
 }
 void CollectorManager::RunCollectorMotor (int BtnOut, int BtnIn, int BtnStop)

@@ -4,15 +4,16 @@
 #include "DriveTrainManager.h"
 #include "AutonomousStraight.h"
 
-void AutonomousStraight::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
+void AutonomousStraight::Initialize(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera)
 {
 	SmartDashboard::PutString("Auto Selected", "Auto Straight");
 	DriveTrain->ResetPIDs();
+	DriveTrain->EncoderReset();
 	DriveTrain->ShiftLow();
 	State = 1;
 }
 
-void AutonomousStraight::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter)
+void AutonomousStraight::Run(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera)
 {
 	switch(State)
 	{
@@ -27,4 +28,7 @@ void AutonomousStraight::Run(DriveTrainManager *DriveTrain, CollectorManager *Co
 			DriveTrain->DisablePIDControl();
 			break;
 	}
+}
+void AutonomousStraight::Finished(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera)
+{
 }

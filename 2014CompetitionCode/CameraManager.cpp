@@ -18,7 +18,16 @@ bool CameraManager::IsHotGoal()
 		{
 			return LastValue;
 		}
+	
 		ColorImage *CurrentImage = camera.GetImage();
+		/*if (Counter == 16)
+		{
+			CurrentImage->Write("AutoImage1.bmp");	
+		}
+		if (Counter == 32)
+		{
+			CurrentImage->Write("AutoImage2.bmp");
+		}*/
 		SmartDashboard::PutString("Image", "Fresh");	
 		BinaryImage* ThresholdImage = CurrentImage->ThresholdHSL(15, 55, 50, 255, 50, 255);
 		ImageInfo info;
