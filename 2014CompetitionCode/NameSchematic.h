@@ -13,8 +13,8 @@
 #define COLLECTOR_MOTOR_OUT -1
 #define COLLECTOR_MOTOR_STOP 0
 #define COLLECTOR_MOTOR_IN 1
-#define LOW_GEAR 0
-#define HIGH_GEAR 1
+#define LOW_GEAR 1
+#define HIGH_GEAR 0
 #define LATCH_ON 0
 #define LATCH_OFF 1
 #define SHOOT_SHIFT_NEUTRAL 1
@@ -53,6 +53,6 @@
 
 // camera
 #define CAMERA_IP_ADDRESS "10.5.37.11"
-#define YELLOW_PIXEL_THRESHOLD 4000
+#define YELLOW_PIXEL_THRESHOLD 2000
 
 #endif

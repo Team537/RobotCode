@@ -122,6 +122,7 @@ void DriveTrainManager::DashboardLoop() {
 	SmartDashboard::PutNumber("Right Count", RightDriveEncoder.Get());
 	//SmartDashboard::PutNumber("Left Cake", LeftDrivePID.GetError());
 	SmartDashboard::PutNumber("Left Count", LeftDriveEncoder.Get());
+	SmartDashboard::PutBoolean("Shift Gear", DriveShift.Get());
 }
 
 void DriveTrainManager::ShiftHigh() {

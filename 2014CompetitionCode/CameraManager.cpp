@@ -20,16 +20,21 @@ bool CameraManager::IsHotGoal()
 		}
 	
 		ColorImage *CurrentImage = camera.GetImage();
-		/*if (Counter == 16)
+		if (!CurrentImage)
 		{
-			CurrentImage->Write("AutoImage1.bmp");	
+			return false;
+		}
+		
+		if (Counter == 16)
+		{
+			CurrentImage->Write("AutoImage1.png");	
 		}
 		if (Counter == 32)
 		{
-			CurrentImage->Write("AutoImage2.bmp");
-		}*/
+			CurrentImage->Write("AutoImage2.png");
+		}
 		SmartDashboard::PutString("Image", "Fresh");	
-		BinaryImage* ThresholdImage = CurrentImage->ThresholdHSL(15, 55, 50, 255, 50, 255);
+		BinaryImage* ThresholdImage = CurrentImage->ThresholdHSL(0, 25, 100, 255, 50, 255);
 		ImageInfo info;
 		Image *img = ThresholdImage->GetImaqImage();
 		imaqGetImageInfo(img, &info);
@@ -55,22 +60,22 @@ bool CameraManager::IsHotGoal()
 		delete ThresholdImage;
 		Counter++;
 		return LastValue;
-	}
-	void CameraManager::CameraInitialize()
-	{
-		AxisCamera& camera = AxisCamera::GetInstance();
-	}
-	void CameraManager::CameraStart()
-	{
-		
-		CameraTimer.Start();
-	}
-	void CameraManager::CameraStop()
-	{
-		CameraTimer.Stop();
-		CameraTimer.Reset();
-		AxisCamera::DeleteInstance();
-	}
+}
+void CameraManager::CameraInitialize()
+{
+	AxisCamera& camera = AxisCamera::GetInstance();
+}
+void CameraManager::CameraStart()
+{
+	
+	CameraTimer.Start();
+}
+void CameraManager::CameraStop()
+{
+	CameraTimer.Stop();
+	CameraTimer.Reset();
+	AxisCamera::DeleteInstance();
+}
 
 //  rcoe@wi.rr.com
 //   first4me2011  

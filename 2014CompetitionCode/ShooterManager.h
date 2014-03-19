@@ -28,10 +28,8 @@ public:
 			ShooterEncoder.Start();
 			ShooterEncoder.SetMinRate(0.5);
 			
-			LatchedEncoderValue = ShooterEncoder.Get();
-			
-			ShooterPID.SetAbsoluteTolerance(10);
-			ShooterPID.SetOutputRange(-1, .25);
+			ShooterPID.SetAbsoluteTolerance(20);
+			ShooterPID.SetOutputRange(-1, .5);
 		}
 
 	bool IsShooterLocked();
@@ -48,7 +46,6 @@ public:
 	
 private:
 	int ShooterState;
-	int LatchedEncoderValue;
 };
 
 #endif

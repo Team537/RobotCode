@@ -37,7 +37,6 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				{
 					AutoTimer.Stop();
 					AutoTimer.Reset();
-					AutoTimer.Start();
 					AutoState = 3;
 				}
 				break;
@@ -62,7 +61,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 			
 			case 5: //Shoot, also brings back to shooter state 3
-				if (AutoTimer.Get() > 2)
+				if (AutoTimer.Get() > 1)
 				{
 					AutoTimer.Stop();
 					AutoTimer.Reset();
