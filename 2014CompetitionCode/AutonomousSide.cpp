@@ -22,7 +22,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 	{
 			case 1: //move forward
 				DriveTrain->ShiftHigh();
-				DriveTrain->SetDistance(-164, -164);
+				DriveTrain->SetDistance(-96, -96);
 				if (DriveTrain->AtDistance())
 				{
 					AutoTimer.Start();
@@ -61,7 +61,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				break;
 			
 			case 5: //Shoot, also brings back to shooter state 3
-				if (AutoTimer.Get() > 1)
+				if (AutoTimer.Get() > 1.5)
 				{
 					AutoTimer.Stop();
 					AutoTimer.Reset();
@@ -70,10 +70,21 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 				Shooter->StateMachine(Collector->SafeToShoot(), 0, 1, Collector);
 				break;
 
-			case 6: //Auto Done
+			case 6: //Auto Reset
 				Shooter->StateMachine(Collector->SafeToShoot(), 0, 0, Collector);
 				Collector->RunCollector(0,0,0,0,1,0);
+				DriveTrain->ShiftHigh();
+				DriveTrain->SetDistance(-80,-80);
+				if (DriveTrain->AtDistance())
+				{
+					AutoState = 7;
+				}
 				break;
+				
+			case 7: //AutoDone
+				break;
+				
+								
 	}
 }
 void AutonomousSide::Finished(DriveTrainManager *DriveTrain, CollectorManager *Collector, ShooterManager *Shooter, CameraManager *Camera){

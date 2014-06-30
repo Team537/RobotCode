@@ -25,16 +25,16 @@ bool CameraManager::IsHotGoal()
 			return false;
 		}
 		
-		if (Counter == 16)
+		if (Counter == 4)
 		{
 			CurrentImage->Write("AutoImage1.png");	
 		}
-		if (Counter == 32)
+		if (Counter == 12)
 		{
 			CurrentImage->Write("AutoImage2.png");
 		}
 		SmartDashboard::PutString("Image", "Fresh");	
-		BinaryImage* ThresholdImage = CurrentImage->ThresholdHSL(0, 25, 100, 255, 50, 255);
+		BinaryImage* ThresholdImage = CurrentImage->ThresholdHSL(20, 90, 150, 255, 100, 255);
 		ImageInfo info;
 		Image *img = ThresholdImage->GetImaqImage();
 		imaqGetImageInfo(img, &info);
@@ -59,6 +59,7 @@ bool CameraManager::IsHotGoal()
 		delete CurrentImage;
 		delete ThresholdImage;
 		Counter++;
+		
 		return LastValue;
 }
 void CameraManager::CameraInitialize()
@@ -77,6 +78,5 @@ void CameraManager::CameraStop()
 	AxisCamera::DeleteInstance();
 }
 
-//  rcoe@wi.rr.com
-//   first4me2011  
+
 

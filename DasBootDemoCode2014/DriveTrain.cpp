@@ -62,7 +62,7 @@ void DriveTrain::RampSpeed (float LNewSpeed, float RNewSpeed)
 	}
 void DriveTrain::SetMotors (void)
 	{
-		MotorL.SetSpeed(lspd);
+		MotorL.SetSpeed(-lspd);
 		MotorR.SetSpeed(rspd);
 		prevl = lspd;
 		prevr = rspd;

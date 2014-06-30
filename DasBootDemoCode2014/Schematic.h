@@ -2,28 +2,30 @@
 #define SCHEMATIC
 
 //victors
-#define VICTL 1,3
-#define VICTR 1,4
-#define VICTROLL 1,5
+#define VICTL 1,1
+#define VICTR 1,5
+#define COLLECTOR_MOTOR 1,4
 
 //Compressor
-#define COMPRESSOR_SWITCH 1,2
-#define COMPRESSOR_RELAY 1,1
+#define COMPRESSOR_SWITCH 1,14
+#define COMPRESSOR_RELAY 1,3
 
 //pistons
 #define SHIFT 1,5
+#define PRIME 1,7
+#define FIRE 1,6
 
 // Primary Controller
 #define PRIMARY_CONTROLLER 1
-#define SECONDARY_CONTROLLER 2
 #define LEFT_JOYSTICK 2
 #define RIGHT_JOYSTICK 4
+#define BUTTON_KICK 6
 #define BUTTON_LOW_DRIVE_SHIFT 7
 #define BUTTON_HIGH_DRIVE_SHIFT 8
 #define BUTTON_ROLLER_ON 1
 #define BUTTON_ROLLER_OFF 2
 
-// nnumbers
+// numbers
 #define HIGH 1
 #define LOW 0
 #define LEFT_DIRECTION 1

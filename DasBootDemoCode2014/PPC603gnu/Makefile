@@ -158,6 +158,10 @@ SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBPATH =
 SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBS = 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : OBJ_DIR := SimpleTemplate_partialImage/$(MODE_DIR)
 
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/Collector.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/Collector.cpp
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/CompressorManager.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
@@ -166,12 +170,18 @@ SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.o
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/Kicker.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/Kicker.cpp
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.o : C:/Team537Code/RobotCode/DasBootDemoCode2014/MyRobot.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.o \
+OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/Collector.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/Kicker.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.o
 
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage.o : $(OBJECTS_SimpleTemplate_partialImage)
@@ -184,7 +194,8 @@ _clean :: SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_cl
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_clean : 
 	$(TRACE_FLAG)if [ -d "SimpleTemplate_partialImage" ]; then cd "SimpleTemplate_partialImage"; rm -rf $(MODE_DIR); fi
 
-DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.d
+DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/Collector.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/DriveTrain.d \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/Kicker.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/DasBootDemoCode2014/MyRobot.d
 -include $(DEP_FILES)
 
 
