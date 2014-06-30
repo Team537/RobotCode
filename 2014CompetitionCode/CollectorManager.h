@@ -29,7 +29,7 @@ private:
 	
 	void RunCollectorRetract (int BtnRetract);
 	void RunCollectorDeploy (int BtnDeploy);
-	void RunCollectorMotor (int SpitOut, int PullIn, int Sit);
+	void RunCollectorMotor (int BtnOut, int BtnIn, int BtnStop);
 	
 };
 
