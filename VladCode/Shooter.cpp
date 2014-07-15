@@ -1,15 +1,14 @@
-#include "FrisbeeShooter.h"
+#include "Shooter.h"
 #include "NameSchematic.h"
 #include "Schematic.h"
 
-void FrisbeeShooter::runFrisbeeShooter (int ButtonShoot, int ButtonFlywheel, int ButtonAngleUp, int ButtonAngleDown)
+void Shooter::runShooter (int ButtonShoot, int ButtonFlywheel, int ButtonAngleUp, int ButtonAngleDown)
 {
 	AdjustAngle (ButtonAngleUp, ButtonAngleDown);
-	StartFlyWheel (ButtonFlywheel);
-	FireFrisbee (ButtonShoot);
-	
+	StartFlyWheel (ButtonFlywheel,  ButtonShoot);
+	FireObject (ButtonShoot);
 }
-void FrisbeeShooter::AdjustAngle(int btnAngleUp, int btnAngleDown)
+void Shooter::AdjustAngle(int btnAngleUp, int btnAngleDown)
 {
 	if ((btnAngleUp == 1 && btnAngleDown == 0)){
 		AngleAdjust.Set(1);
@@ -24,7 +23,7 @@ void FrisbeeShooter::AdjustAngle(int btnAngleUp, int btnAngleDown)
 			AngleAdjust.Set(0);
 	}
 }
-void FrisbeeShooter::StartFlyWheel(int btnFlyWheel)
+void Shooter::StartFlyWheel(int btnFlyWheel, int ButtonShoot)
 {
 	/*if ((btnFlyWheel == PRESSED) && FlyWheelSwitch == 1)
 	{
@@ -61,43 +60,61 @@ void FrisbeeShooter::StartFlyWheel(int btnFlyWheel)
 	}
 	if (FlyWheelSwitch == 1)
 	{
-		FlyWheel.Set(-.3);
-		FlyWheel2.Set(-.3);
+		/*
+			FrisbeeFlyWheel.Set(-1);
+			FrisbeeFlyWheel2.Set(-1);
+		*/
+		
+		{
+			BasketballFlyWheel.Set(-0.5);
+			BasketballFlyWheel2.Set(-0.5);			
+		}
 	}
 	if (FlyWheelSwitch == 0)
 	{
-		FlyWheel.Set(0);
-		FlyWheel2.Set(0);
+		/*if 
+		
+			FrisbeeFlyWheel.Set(0);
+			FrisbeeFlyWheel2.Set(0);
+		*/
+
+			BasketballFlyWheel.Set(0);
+			BasketballFlyWheel2.Set(0);
 	}
 	LastPressed = btnFlyWheel;
 }
-void FrisbeeShooter::FireFrisbee(int btnShoot)
+void Shooter::FireObject(int ButtonShoot)
 {
-	/*if((btnShoot == 1) && (FireOn.Get() == 0))
+	/*
+	if (ShootType == "Frisbee")
 	{
-		ShootTime.Start();
-		if (ShootTime.Get() > 1)
-		
-		ShootTime.Stop();
-		ShootTime.Reset();
-		FireOn.Set(1);
-		FireOff.Set(0);
-		ShootTime.Start();
-	}
-	if ((ShootTime.Get() >= .5) && FireOn.Get() == 1)
-	{
-		FireOn.Set(0);
-		FireOff.Set(1);
-		ShootTime.Stop();
-		ShootTime.Reset();
-		
+		if((btnShoot == 1) && (FireOn.Get() == 0))
+		{
+			ShootTime.Start();
+			if (ShootTime.Get() > 1)
+			
+			ShootTime.Stop();
+			ShootTime.Reset();
+			FireOn.Set(1);
+			FireOff.Set(0);
+			ShootTime.Start();
+		}
+		if ((ShootTime.Get() >= .5) && FireOn.Get() == 1)
+		{
+			FireOn.Set(0);
+			FireOff.Set(1);
+			ShootTime.Stop();
+			ShootTime.Reset();
+			
+		}
 	}*/
-	if(btnShoot == 1)
-	{
-		Feeder.Set(-1);
-	}
-	else
-	{
-		Feeder.Set(0);
-	}
+	
+		if(ButtonShoot == 1)
+		{
+			Feeder.Set(-1);
+		}
+		else
+		{
+			Feeder.Set(0);
+		}
 }

@@ -121,7 +121,7 @@ void ShooterManager::StateMachine(bool SafeToShoot, int GoalButton, CollectorMan
 			
 	    case MOVE_TO_GOAL_POINT:	
     		// move to goal point;
-	    	if (Collector->RunCollectorToggle(0) == false)
+	    	if (Collector->RunCollectorToggle(0) == true)
 	    	{
 	    	Collector->RunCollectorToggle(1);
 	    	}

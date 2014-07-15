@@ -1,4 +1,5 @@
-#ifndef BASKETBALLSHOOTERMANAGER_H
+/*
+ * #ifndef BASKETBALLSHOOTERMANAGER_H
 #define BASKETBALLSHOOTERMANAGER_H
 #include "Schematic.h"
 #include "NameSchematic.h"

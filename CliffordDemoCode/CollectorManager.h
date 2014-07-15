@@ -11,6 +11,8 @@ class CollectorManager
 	Victor CollectorMotor;
 	Timer CollectorTimer;
 	bool CollectorToggle;
+	//int LastPressed;
+
 public:
 	CollectorManager(void):
 		CollectorRetract (COLLECTOR_RETRACT),

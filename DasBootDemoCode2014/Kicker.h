@@ -17,6 +17,7 @@ public:
 		}
 		void StartKicker();
 		void StateMachine(int btnKick);
+		void Manual(int Pon,int Poff, int Lon, int Loff);
 private:
 	int KickerState;
 };

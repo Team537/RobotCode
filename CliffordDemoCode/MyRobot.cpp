@@ -5,6 +5,8 @@
 #include "DriveTrainManager.h"
 #include "CollectorManager.h"
 #include "ShooterManager.h"
+#include "AutonomousSide.h"
+#include "CameraManager.h"
 
 #include <cmath>
 class RobotDemo : public SimpleRobot
@@ -24,7 +26,8 @@ private:
 	CollectorManager Collector;
 	ShooterManager Shooter;
 	DriverStationLCD* lcd;
-
+	CameraManager Camera2;
+	AutonomousSide AutoSide;
 	Timer PrintTime, AutoTimer, AutoTimeDrive;
 public:
 	
@@ -54,19 +57,23 @@ public:
 	}
 	void RobotInit()
 	{
-	
+		Camera2.CameraInitialize();
 	}
 	
 	void Autonomous()
 	{
-		
+		DriveTrain.DashboardInitialize();
+		Shooter.DashboardInitialize();
+		Shooter.StartShooterAuto();
+		AutoSide.Initialize( &DriveTrain, &Collector, &Shooter, &Camera2);
 		while (IsAutonomous() && IsEnabled())
 		{			
-			/*comp.checkCompressor();
-			autonomousChoice->Run(&DriveTrain, &Collector, &Shooter, &Camera2);
+			comp.checkCompressor();
+			AutoSide.Run(&DriveTrain, &Collector, &Shooter, &Camera2);
 			DriveTrain.DashboardLoop();
-			Shooter.DashboardLoop();*/
+			Shooter.DashboardLoop();
 		}
+		AutoSide.Finished( &DriveTrain, &Collector, &Shooter, &Camera2);
 	
 	}
 	void OperatorControl(void)

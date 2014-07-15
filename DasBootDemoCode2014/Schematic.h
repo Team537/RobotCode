@@ -12,8 +12,8 @@
 
 //pistons
 #define SHIFT 1,5
-#define PRIME 1,7
-#define FIRE 1,6
+#define PRIME 1,4
+#define FIRE 1,1
 
 // Primary Controller
 #define PRIMARY_CONTROLLER 1
@@ -22,8 +22,7 @@
 #define BUTTON_KICK 6
 #define BUTTON_LOW_DRIVE_SHIFT 7
 #define BUTTON_HIGH_DRIVE_SHIFT 8
-#define BUTTON_ROLLER_ON 1
-#define BUTTON_ROLLER_OFF 2
+#define BUTTON_ROLLER_ON 5
 
 // numbers
 #define HIGH 1

@@ -23,25 +23,47 @@ void CollectorManager::RunCollector (int ButtonToggle, int ButtonCollectOut, int
 }
 bool CollectorManager::RunCollectorToggle (int BtnToggle)
 {
-	if ((BtnToggle == PRESSED) && (CollectorToggle == true))
+	if ((BtnToggle == PRESSED) && (CollectorToggle == false))
 	{
 		CollectorRetract.Set(ON);
 		CollectorDeploy.Set(OFF);
 	}
-	if ((BtnToggle == PRESSED) && (CollectorToggle == false))
+	if ((BtnToggle == PRESSED) && (CollectorToggle == true))
 	{
 		CollectorDeploy.Set(ON);
 		CollectorRetract.Set(OFF);
 	}
 	if ((BtnToggle != PRESSED) && (CollectorDeploy.Get() == ON))
 	{
-		CollectorToggle = true;
+		CollectorToggle = false;
 	}
 	if ((BtnToggle != PRESSED) && (CollectorRetract.Get() == ON))
 	{
-		CollectorToggle = false;
+		CollectorToggle = true;
 	}
 	return CollectorToggle;
+	/*if((BtnToggle == PRESSED) && (LastPressed == NOT_PRESSED))
+	{
+		if(CollectorToggle == true)
+		{
+			CollectorToggle = false;
+		}
+		else if (CollectorToggle == false)
+		{
+			CollectorToggle = true;
+		}
+	}
+	if (CollectorToggle == true)
+	{
+		CollectorDeploy.Set(ON);
+		CollectorRetract.Set(OFF);
+	}
+	if (CollectorToggle == false)
+	{
+		CollectorDeploy.Set(OFF);
+		CollectorRetract.Set(ON);
+	}
+	LastPressed = BtnToggle;*/
 }
 
 void CollectorManager::RunCollectorMotor (int BtnOut, int BtnIn, int BtnStop)

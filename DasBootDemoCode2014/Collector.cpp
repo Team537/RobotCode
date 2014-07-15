@@ -1,13 +1,13 @@
 #include "CollectorManager.h"
 #include "Schematic.h"
 
-void CollectorManager::runCollector(int btnOn, int btnOff)
+void CollectorManager::runCollector(int btnOn)
 {
 	if (btnOn == 1)
 	{
 		CollectorMotor.Set(1);
 	}
-	if (btnOff == 1)
+	else
 	{
 		CollectorMotor.Set(0);
 	}

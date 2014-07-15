@@ -8,9 +8,8 @@
 #include "CollectorManager.h"
 #include "ShooterManager.h"
 #include "CameraManager.h"
-#include "AutoChoice.h"
 
-class AutonomousSide : public AutoChoice
+class AutonomousSide 
 {
 	Timer AutoTimer;
 	Timer TotalAutoTime;

@@ -14,7 +14,7 @@ public:
 		{
 		
 		}
-	void runCollector(int btnOn, int btnOff);
+	void runCollector(int btnOn);
 private:
 	
 };

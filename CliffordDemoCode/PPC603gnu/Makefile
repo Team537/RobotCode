@@ -158,6 +158,14 @@ SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBPATH =
 SimpleTemplate_partialImage/$(MODE_DIR)/% : LIBS = 
 SimpleTemplate_partialImage/$(MODE_DIR)/% : OBJ_DIR := SimpleTemplate_partialImage/$(MODE_DIR)
 
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/AutonomousSide.o : C:/Team537Code/RobotCode/CliffordDemoCode/AutonomousSide.cpp
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
+SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CameraManager.o : C:/Team537Code/RobotCode/CliffordDemoCode/CameraManager.cpp
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CollectorManager.o : C:/Team537Code/RobotCode/CliffordDemoCode/CollectorManager.cpp
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
@@ -178,7 +186,9 @@ SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/ShooterManager.
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CollectorManager.o \
+OBJECTS_SimpleTemplate_partialImage = SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/AutonomousSide.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CameraManager.o \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CollectorManager.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CompressorManager.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/DriveTrainManager.o \
 	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/MyRobot.o \
@@ -194,8 +204,9 @@ _clean :: SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_cl
 SimpleTemplate_partialImage/$(MODE_DIR)/SimpleTemplate_partialImage_clean : 
 	$(TRACE_FLAG)if [ -d "SimpleTemplate_partialImage" ]; then cd "SimpleTemplate_partialImage"; rm -rf $(MODE_DIR); fi
 
-DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CollectorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/DriveTrainManager.d \
-	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/MyRobot.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/ShooterManager.d
+DEP_FILES := SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/AutonomousSide.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CameraManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CollectorManager.d \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/CompressorManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/DriveTrainManager.d SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/MyRobot.d \
+	 SimpleTemplate_partialImage/$(MODE_DIR)/Objects/CliffordDemoCode/ShooterManager.d
 -include $(DEP_FILES)
 
 
