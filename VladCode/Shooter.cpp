@@ -60,34 +60,31 @@ void Shooter::StartFlyWheel(int btnFlyWheel, int ButtonShoot)
 	}
 	if (FlyWheelSwitch == 1)
 	{
-		/*
+		
 			FrisbeeFlyWheel.Set(-1);
 			FrisbeeFlyWheel2.Set(-1);
-		*/
 		
-		{
+		
+		/*{
 			BasketballFlyWheel.Set(-0.5);
 			BasketballFlyWheel2.Set(-0.5);			
-		}
+		}*/
 	}
 	if (FlyWheelSwitch == 0)
 	{
-		/*if 
+		
 		
 			FrisbeeFlyWheel.Set(0);
 			FrisbeeFlyWheel2.Set(0);
-		*/
+		/*
 
 			BasketballFlyWheel.Set(0);
-			BasketballFlyWheel2.Set(0);
+			BasketballFlyWheel2.Set(0);*/
 	}
 	LastPressed = btnFlyWheel;
 }
-void Shooter::FireObject(int ButtonShoot)
+void Shooter::FireObject(int btnShoot)
 {
-	/*
-	if (ShootType == "Frisbee")
-	{
 		if((btnShoot == 1) && (FireOn.Get() == 0))
 		{
 			ShootTime.Start();
@@ -107,14 +104,13 @@ void Shooter::FireObject(int ButtonShoot)
 			ShootTime.Reset();
 			
 		}
-	}*/
 	
-		if(ButtonShoot == 1)
+	/*	if(ButtonShoot == 1)
 		{
 			Feeder.Set(-1);
 		}
 		else
 		{
 			Feeder.Set(0);
-		}
+		}*/
 }
