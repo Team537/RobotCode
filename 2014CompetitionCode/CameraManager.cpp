@@ -62,7 +62,10 @@ bool CameraManager::IsHotGoal()
 		
 		return LastValue;
 }
-
+void CameraManager::CameraInitialize()
+{
+	AxisCamera& camera = AxisCamera::GetInstance();
+}
 void CameraManager::CameraStart()
 {
 	
