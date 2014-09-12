@@ -61,8 +61,8 @@ void Shooter::StartFlyWheel(int btnFlyWheel, int ButtonShoot)
 	if (FlyWheelSwitch == 1)
 	{
 		
-			FrisbeeFlyWheel.Set(-0.5);
-			FrisbeeFlyWheel2.Set(-0.5);
+			FrisbeeFlyWheel.Set(-.5);
+			FrisbeeFlyWheel2.Set(-.5);
 		
 		
 		/*{

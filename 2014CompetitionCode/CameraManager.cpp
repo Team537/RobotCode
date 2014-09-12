@@ -9,11 +9,11 @@ bool CameraManager::IsHotGoal()
 		AxisCamera& camera = AxisCamera::GetInstance();
 		SmartDashboard::PutNumber("counter", Counter);
 
-		/*if (!camera.IsFreshImage())
+		if (!camera.IsFreshImage())
 		{
 			SmartDashboard::PutString("Image", "Not Fresh");
 			return LastValue;
-		}*/
+		}
 		if(Counter * Rate >= CameraTimer.Get())
 		{
 			return LastValue;
@@ -62,10 +62,7 @@ bool CameraManager::IsHotGoal()
 		
 		return LastValue;
 }
-void CameraManager::CameraInitialize()
-{
-	AxisCamera& camera = AxisCamera::GetInstance();
-}
+
 void CameraManager::CameraStart()
 {
 	

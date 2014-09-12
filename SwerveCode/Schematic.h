@@ -3,6 +3,9 @@
 
 //Constants
 #define PI 3.1415926535897932384626433832795028841971693993751058209749445923078164
+#define RAMP_SPEED .1
+#define LEFT_DRIVE_DIRECTION 1
+#define RIGHT_DRIVE_DIRECTION -1
 
 //Compressor
 #define COMPRESSOR_SWITCH 1,2
@@ -42,5 +45,15 @@
 
 //Anolog Outputs
 
+
+//PID
+#define AFL_P .01
+#define AFR_P .01
+#define ABL_P .01
+#define ABR_P .01
+#define SFL_P .01
+#define SFR_P .01
+#define SBL_P .01
+#define SBR_P .01
 
 #endif

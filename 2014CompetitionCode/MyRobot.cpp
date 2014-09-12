@@ -87,7 +87,7 @@ public:
 		AutoChoice* autonomousChoice = (AutoChoice*)AutoChooser.GetSelected();
 		autonomousChoice->Initialize(&DriveTrain, &Collector, &Shooter, &Camera2);
 		
-		//AutoStraight.Initialize(&DriveTrain, &Collector, &Shooter);
+		
 		while (IsAutonomous() && IsEnabled())
 		{			
 			comp.checkCompressor();
@@ -108,7 +108,6 @@ public:
 		
 		while (IsOperatorControl() && IsEnabled())
 		{
-			//ACamera2.IsHotGoal();
 			DriveTrain.RunDriveTrain(PrimaryController.GetRawAxis(LEFT_JOYSTICK), PrimaryController.GetRawAxis(RIGHT_JOYSTICK), (int)PrimaryController.GetRawButton(BUTTON_HIGH_DRIVE_SHIFT), (int)PrimaryController.GetRawButton(BUTTON_LOW_DRIVE_SHIFT));
 			UpdateShooterMode();
 			comp.checkCompressor();
