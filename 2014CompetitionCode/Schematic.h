@@ -41,7 +41,7 @@
 #define RIGHT_DRIVE_ENCODER 1,3,1,4
 #define LEFT_DRIVE_ENCODER 1,5,1,6
 #define SHOOTER_ENCODER 1,7,1,8
-#define SHOOTER_LIMIT_SWITCH 1,10
+#define SHOOTER_LIMIT_SWITCH 1,11
 
 // Robot Digital Outputs
 #define DRIVE_SHIFT 1,1
@@ -55,16 +55,16 @@
 #define RIGHT_DRIVE_DIRECTION -1
 
 // Robot Drive Directions - PRACTICE SETTINGS
-#define LEFT_DRIVE_PID 0.015
-#define RIGHT_DRIVE_PID -0.02
-#define LEFT_PID_ADJUST -1
-#define RIGHT_PID_ADJUST -1
+//#define LEFT_DRIVE_PID 0.015
+//#define RIGHT_DRIVE_PID -0.02
+//#define LEFT_PID_ADJUST -1
+//#define RIGHT_PID_ADJUST -1
 
 // Robot Drive Directions - COMPETITION SETTINGS
-//#define LEFT_DRIVE_PID -0.02
-//#define RIGHT_DRIVE_PID -0.02
-//#define LEFT_PID_ADJUST 1
-//#define RIGHT_PID_ADJUST -1
+#define LEFT_DRIVE_PID -0.02
+#define RIGHT_DRIVE_PID -0.02
+#define LEFT_PID_ADJUST 1
+#define RIGHT_PID_ADJUST -1
 
 
 #endif

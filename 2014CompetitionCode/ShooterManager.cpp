@@ -92,7 +92,7 @@ void ShooterManager::ResetShooterState()
 void ShooterManager::StateMachine(bool SafeToShoot, int ResetButton, int GoalButton, CollectorManager *Collector)
 {	
 	SmartDashboard::PutNumber("Goal Button", GoalButton);	
-	SmartDashboard::PutNumber("Safe to Shoot", SafeToShoot);
+	SmartDashboard::PutNumber("Reset Button", ResetButton);
 	
 	
 		
