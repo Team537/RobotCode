@@ -104,7 +104,7 @@ void ShooterManager::StateMachine(bool SafeToShoot, int ResetButton, int GoalBut
 	    	
 	    case WAIT_FOR_COMMAND: 
 	    	ShooterPID.Disable();
-	    	if ((ResetButton == 1 || SWITCH_TO_LIMIT_SWITCH_VALUE > ShooterEncoder.Get()) && Collector->SafeToShoot())
+	    	if ((ResetButton == 1 || SWITCH_TO_LIMIT_SWITCH_VALUE > ShooterEncoder.Get()))
 	    	{
 	    		ShooterState = WINCH_TO_LIMIT_SWITCH;
 	   		}

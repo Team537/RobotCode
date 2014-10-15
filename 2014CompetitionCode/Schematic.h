@@ -61,8 +61,8 @@
 //#define RIGHT_PID_ADJUST -1
 
 // Robot Drive Directions - COMPETITION SETTINGS
-#define LEFT_DRIVE_PID -0.02
-#define RIGHT_DRIVE_PID -0.02
+#define LEFT_DRIVE_PID -0.015
+#define RIGHT_DRIVE_PID -0.015
 #define LEFT_PID_ADJUST 1
 #define RIGHT_PID_ADJUST -1
 
