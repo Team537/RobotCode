@@ -9,6 +9,7 @@
 #define LEFT_DRIVE_DIRECTION 1
 #define RIGHT_DRIVE_DIRECTION -1
 #define DRIVE_SHIFT 1, 1
+#define GYRO 1,18
 
 //Robot Drive Directions
 #define LEFT_DRIVE_PID 0.015
