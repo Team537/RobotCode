@@ -7,6 +7,8 @@ void CompressorManager::checkCompressor()
 		comp.Stop();
 	else
 		comp.Start();
+	SmartDashboard::PutData("compressor", &comp);
+	SmartDashboard::PutNumber("compressor2", comp.Enabled());
 }
 
 int CompressorManager::getPressureSwitch()

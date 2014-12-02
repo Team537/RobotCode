@@ -22,7 +22,7 @@ void AutonomousSide::Run(DriveTrainManager *DriveTrain, CollectorManager *Collec
 	{
 			case 1: //move forward
 				DriveTrain->ShiftHigh();
-				DriveTrain->SetDistance(-164, -164);
+				DriveTrain->SetDistance(-116, -116);
 				if (DriveTrain->AtDistance())
 				{
 					AutoTimer.Start();
