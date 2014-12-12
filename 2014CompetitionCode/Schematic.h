@@ -33,8 +33,8 @@
 #define SHOOTER_MOTOR 1,4
 
 // Robot Compressor
-#define COMPRESSOR_SWITCH 1,2
-#define COMPRESSOR_RELAY 1,3
+#define COMPRESSOR_SWITCH 1,1
+#define COMPRESSOR_RELAY 1,2
 
 // Robot Digital Inputs
 #define AUTONOMOUS_SWITCH 1,1

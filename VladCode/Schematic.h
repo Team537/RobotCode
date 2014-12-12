@@ -20,6 +20,7 @@
 //Compressor
 #define COMPRESSOR_SWITCH 1,2
 #define COMPRESSOR_RELAY 1,1
+#define OTHER_COMPRESSOR_RELAY 1,2
 
 //Frisbee Shooter
 #define FRISBEE_FLY_WHEEL_VICTOR 1, 3	
