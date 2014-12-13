@@ -2,8 +2,8 @@
 #define SCHEMATIC_H
 
 //Drivetrain 
-#define LEFT_DRIVE_MOTOR 1, 1
-#define RIGHT_DRIVE_MOTOR 1, 2
+#define LEFT_DRIVE_MOTOR 1, 2
+#define RIGHT_DRIVE_MOTOR 1, 1
 #define RIGHT_DRIVE_ENCODER 1,3,1,4
 #define LEFT_DRIVE_ENCODER 1,5,1,6
 #define LEFT_DRIVE_DIRECTION 1
@@ -26,8 +26,9 @@
 #define FRISBEE_FLY_WHEEL_VICTOR 1, 3	
 #define FRISBEE_FLY_WHEEL_VICTOR2 1,4
 #define ADJUST_MOTOR 1, 5
+#define ADJUST_MOTOR2 1,6
 #define PISTON_ON 1, 3
-#define PISTON_OFF 1,6
+#define PISTON_OFF 1,7
 
 //Basketball Shooter
 #define BASKETBALL_FLY_WHEEL_VICTOR 1,5

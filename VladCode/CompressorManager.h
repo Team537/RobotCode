@@ -8,7 +8,7 @@ class CompressorManager
 Compressor comp;
 public:
 	CompressorManager(void):
-		comp(COMPRESSOR_SWITCH, COMPRESSOR_RELAY, OTHER_COMPRESSOR_RELAY)
+		comp(COMPRESSOR_SWITCH, COMPRESSOR_RELAY)
 		{
 		}
 	void checkCompressor();

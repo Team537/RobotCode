@@ -6,7 +6,7 @@
 
 class Shooter
 {
-	Victor FrisbeeFlyWheel, FrisbeeFlyWheel2,/* BasketballFlyWheel, BasketballFlyWheel2,*/ AngleAdjust; //Feeder;
+	Victor FrisbeeFlyWheel, FrisbeeFlyWheel2,/* BasketballFlyWheel, BasketballFlyWheel2,*/ AngleAdjust,AngleAdjust2; //Feeder;
 	Solenoid FireOn, FireOff;
 	bool FlyWheelSwitch;
 	Timer ShootTime;
@@ -19,6 +19,7 @@ public:
 	FrisbeeFlyWheel2 (FRISBEE_FLY_WHEEL_VICTOR2),
 	//BasketballFlyWheel2 (BASKETBALL_FLY_WHEEL_VICTOR2),
 	AngleAdjust (ADJUST_MOTOR),
+	AngleAdjust2(ADJUST_MOTOR2),
 	//AngleAdjust(SHROUD_ADJUST),
 	//Feeder(FEEDER)
 	FireOn (PISTON_ON),

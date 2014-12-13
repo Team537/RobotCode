@@ -12,15 +12,20 @@ void Shooter::AdjustAngle(int btnAngleUp, int btnAngleDown)
 {
 	if ((btnAngleUp == 1 && btnAngleDown == 0)){
 		AngleAdjust.Set(1);
+		AngleAdjust2.Set(1);
 	}
 	if ((btnAngleDown == 1) && (btnAngleUp == 0)){
 			AngleAdjust.Set(-1);
+			AngleAdjust2.Set(-1);
+
 	}
 	if ((btnAngleUp == 0) && (btnAngleDown == 0)){
 		AngleAdjust.Set(0);
+		AngleAdjust2.Set(0);
 	}
 	if ((btnAngleDown == 0) && (btnAngleUp == 0)){
 			AngleAdjust.Set(0);
+			AngleAdjust2.Set(0);
 	}
 }
 void Shooter::StartFlyWheel(int btnFlyWheel, int ButtonShoot)
