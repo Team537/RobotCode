@@ -1,0 +1,2 @@
+cd /ni-rt/system
+put VladCode/Debug/VladCode.out FRC_UserProgram.out

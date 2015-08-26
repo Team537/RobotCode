@@ -30,7 +30,7 @@ private:
 	ShooterManager Shooter;
 	DriverStationLCD* lcd;
 	Timer PrintTime, AutoTimer, AutoTimeDrive;
-	SendableChooser AutoChooser;
+	//SendableChooser AutoChooser;
 	AutonomousStraight AutoStraight;
 	AutonomousSide AutoSide;
 	CameraManager Camera2;
@@ -73,14 +73,14 @@ public:
 	{
 		SmartDashboard::PutNumber("Yellow Count", 0);
 		Camera2.CameraInitialize();
-		AutoChooser.AddDefault("Side lineup, High goal", &AutoSide);
-		AutoChooser.AddObject("Drive straight, No goal", &AutoStraight);
-		SmartDashboard::PutData("Chooser", &AutoChooser);
+		//AutoChooser.AddDefault("Side lineup, High goal", &AutoSide);
+		//AutoChooser.AddObject("Drive straight, No goal", &AutoStraight);
+		//SmartDashboard::PutData("Chooser", &AutoChooser);
 	}
 	
 	void Autonomous()
 	{
-		DriveTrain.DashboardInitialize();
+		/*DriveTrain.DashboardInitialize();
 		Shooter.DashboardInitialize();
 		Shooter.StartShooterAuto();
 		
@@ -95,7 +95,7 @@ public:
 			DriveTrain.DashboardLoop();		
 			Shooter.DashboardLoop();
 		}
-		autonomousChoice->Finished(&DriveTrain, &Collector, &Shooter, &Camera2);
+		autonomousChoice->Finished(&DriveTrain, &Collector, &Shooter, &Camera2);*/
 	}
 	void OperatorControl(void)
 	{

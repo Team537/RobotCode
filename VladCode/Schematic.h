@@ -2,11 +2,12 @@
 #define SCHEMATIC_H
 
 //Drivetrain 
-#define LEFT_DRIVE_MOTOR 1, 2
-#define RIGHT_DRIVE_MOTOR 1, 1
+#define LEFT_DRIVE_MOTOR 1, 1
+#define RIGHT_DRIVE_MOTOR 1, 2
 #define RIGHT_DRIVE_ENCODER 1,3,1,4
 #define LEFT_DRIVE_ENCODER 1,5,1,6
 #define LEFT_DRIVE_DIRECTION 1
+
 #define RIGHT_DRIVE_DIRECTION -1
 #define DRIVE_SHIFT 1, 1
 #define GYRO 1,18
@@ -23,12 +24,12 @@
 #define OTHER_COMPRESSOR_RELAY 1,2
 
 //Frisbee Shooter
-#define FRISBEE_FLY_WHEEL_VICTOR 1, 3	
-#define FRISBEE_FLY_WHEEL_VICTOR2 1,4
-#define ADJUST_MOTOR 1, 5
+#define FRISBEE_FLY_WHEEL_VICTOR  1,8	
+#define FRISBEE_FLY_WHEEL_VICTOR2 1,10
+#define ADJUST_MOTOR  1,5
 #define ADJUST_MOTOR2 1,6
-#define PISTON_ON 1, 3
-#define PISTON_OFF 1,7
+#define PISTON_ON  1,6
+#define PISTON_OFF 1,10
 
 //Basketball Shooter
 #define BASKETBALL_FLY_WHEEL_VICTOR 1,5
@@ -37,12 +38,14 @@
 #define FEEDER 1,3
 
 //Candy Shooter
-#define CANDY_PISTON_ON 1,3
-#define CANDY_PISTON_OFF 1,6
+#define CANDY_PISTON_ON 1,7
+#define CANDY_PISTON_OFF 1,2
 
 //Controller All
 #define PRIMARY_CONTROLLER 1
-#define HALF_SPEED_BUTTON 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+#define HALF_SPEED_BUTTON 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+
 #define LEFT_JOYSTICK 2
 #define RIGHT_JOYSTICK 4
 #define SHIFT_HIGH 7

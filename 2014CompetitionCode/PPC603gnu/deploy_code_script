@@ -1,0 +1,2 @@
+cd /ni-rt/system
+put 2014CompetitionCode/Debug/2014CompetitionCode.out FRC_UserProgram.out

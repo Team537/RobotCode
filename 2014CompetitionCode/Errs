@@ -1,0 +1,95 @@
+cd PPC603gnu && exec "c:/WindRiver/vxworks-6.3/host/x86-win32/bin/make.exe" -f Makefile
+c:\WindRiver\vxworks-6.3\host\x86-win32\bin\make.exe[1]: Entering directory `c:/Team537Code/RobotCode/2014CompetitionCode/PPC603gnu'
+
+
+
+building 2014CompetitionCode_partialImage/Debug/Objects/2014CompetitionCode/AutonomousSide.o
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:5,
+                 from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:1:
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:5:20: WPILib.h: No such file or directory
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:5,
+                 from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:1:
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:9: error: `Solenoid' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:10: error: `Victor' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:11: error: `Timer' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h: In constructor `CollectorManager::CollectorManager()':
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:14: error: class `CollectorManager' does not have any field named `CollectorRetract'
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:15: error: class `CollectorManager' does not have any field named `CollectorDeploy'
+c:/Team537Code/RobotCode/2014CompetitionCode/CollectorManager.h:16: error: class `CollectorManager' does not have any field named `CollectorMotor'
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:1:
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h: At global scope:
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:10: error: `Solenoid' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:11: error: `Victor' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:12: error: `DigitalInput' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:13: error: `Encoder' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:14: error: `Timer' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:15: error: `PIDController' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h: In constructor `ShooterManager::ShooterManager()':
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:18: error: class `ShooterManager' does not have any field named `ShooterMotorShifter'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:19: error: class `ShooterManager' does not have any field named `Latch'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:20: error: class `ShooterManager' does not have any field named `ShooterCharge'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:21: error: class `ShooterManager' does not have any field named `ShooterMotor'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:22: error: class `ShooterManager' does not have any field named `ShooterLimitSwitch'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:23: error: class `ShooterManager' does not have any field named `ShooterEncoder'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:23: error: `CounterBase' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:23: error: `k4X' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:23: error: (Each undeclared identifier is reported only once for each function it appears in.)
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:24: error: class `ShooterManager' does not have any field named `ShooterPID'
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:24: error: `ShooterEncoder' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:24: error: `ShooterMotor' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:27: error: `PIDSource' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:27: error: `kDistance' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/ShooterManager.h:31: error: `ShooterPID' undeclared (first use this function)
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.h:6,
+                 from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:4:
+c:/Team537Code/RobotCode/2014CompetitionCode/CompressorManager.h: At global scope:
+c:/Team537Code/RobotCode/2014CompetitionCode/CompressorManager.h:8: error: `Compressor' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/CompressorManager.h: In constructor `CompressorManager::CompressorManager()':
+c:/Team537Code/RobotCode/2014CompetitionCode/CompressorManager.h:11: error: class `CompressorManager' does not have any field named `comp'
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.h:7,
+                 from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:4:
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h: At global scope:
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:9: error: `Victor' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:10: error: `Solenoid' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:11: error: `Encoder' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:12: error: `Timer' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:13: error: `PIDController' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h: In constructor `DriveTrainManager::DriveTrainManager()':
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:16: error: class `DriveTrainManager' does not have any field named `LeftDriveMotor'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:17: error: class `DriveTrainManager' does not have any field named `RightDriveMotor'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:18: error: class `DriveTrainManager' does not have any field named `DriveShift'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:19: error: class `DriveTrainManager' does not have any field named `LeftDriveEncoder'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:19: error: `CounterBase' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:19: error: `k4X' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:20: error: class `DriveTrainManager' does not have any field named `RightDriveEncoder'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:20: error: `CounterBase' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:21: error: class `DriveTrainManager' does not have any field named `LeftDrivePID'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:21: error: `LeftDriveEncoder' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:21: error: `LeftDriveMotor' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:22: error: class `DriveTrainManager' does not have any field named `RightDrivePID'
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:22: error: `RightDriveEncoder' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:22: error: `RightDriveMotor' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:24: error: `PIDSource' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:24: error: `kDistance' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:27: error: `LeftDrivePID' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:29: error: `PIDSource' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/DriveTrainManager.h:32: error: `RightDrivePID' undeclared (first use this function)
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.h:10,
+                 from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:4:
+c:/Team537Code/RobotCode/2014CompetitionCode/CameraManager.h: At global scope:
+c:/Team537Code/RobotCode/2014CompetitionCode/CameraManager.h:9: error: `Timer' does not name a type
+In file included from c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:4:
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.h:15: error: `Timer' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.h:16: error: `Timer' does not name a type
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp: In member function `virtual void AutonomousSide::Initialize(DriveTrainManager*, CollectorManager*, ShooterManager*, CameraManager*)':
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:9: error: `SmartDashboard' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:9: error: `PutString' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:12: error: `TotalAutoTime' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp: In member function `virtual void AutonomousSide::Run(DriveTrainManager*, CollectorManager*, ShooterManager*, CameraManager*)':
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:19: error: `SmartDashboard' has not been declared
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:19: error: `PutNumber' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:28: error: `AutoTimer' undeclared (first use this function)
+c:/Team537Code/RobotCode/2014CompetitionCode/AutonomousSide.cpp:46: error: `TotalAutoTime' undeclared (first use this function)
+c:\WindRiver\vxworks-6.3\host\x86-win32\bin\make.exe[1]: *** [2014CompetitionCode_partialImage/Debug/Objects/2014CompetitionCode/AutonomousSide.o] Error 1
+c:\WindRiver\vxworks-6.3\host\x86-win32\bin\make.exe[1]: Leaving directory `c:/Team537Code/RobotCode/2014CompetitionCode/PPC603gnu'
+c:\WindRiver\vxworks-6.3\host\x86-win32\bin\make.exe: *** [all] Error 2
